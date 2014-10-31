@@ -5,15 +5,13 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import br.com.devsource.utilitario.texto.TextoUtil;
-import br.com.devsource.utilitario.valueobject.ValueObjectSupport;
 
 /**
  * Classe representa um número telefônico.
  * @author Guilherme Freitas
  */
 @SuppressWarnings("javadoc")
-public class Telefone extends ValueObjectSupport<Telefone> implements Comparable<Telefone> {
-  private static final long serialVersionUID = 1L;
+public class Telefone implements Comparable<Telefone> {
 
   private String ddd;
   private String numero;
@@ -59,12 +57,6 @@ public class Telefone extends ValueObjectSupport<Telefone> implements Comparable
     return String.format("(%2s) %4s-%4s", ddd, numero.subSequence(0, 4), numero.substring(4));
   }
 
-  @Override
-  public boolean sameValueAs(Telefone other) {
-    return (other != null) && new EqualsBuilder().append(ddd, other.ddd).append(numero, other.numero).isEquals();
-  }
-
-  @Override
   public Telefone copy() {
     return new Telefone(ddd, numero);
   }
@@ -72,6 +64,18 @@ public class Telefone extends ValueObjectSupport<Telefone> implements Comparable
   @Override
   public int hashCode() {
     return new HashCodeBuilder().append(ddd).append(numero).hashCode();
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if ((obj == null) || (obj.getClass() != Telefone.class)) {
+      return false;
+    }
+    Telefone other = (Telefone) obj;
+    return new EqualsBuilder().append(ddd, other.ddd).append(numero, other.numero).isEquals();
   }
 
   private static void validarNumero(String numero) {
