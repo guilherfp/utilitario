@@ -77,6 +77,6 @@ public class Telefone extends ValueObjectSupport<Telefone> implements Comparable
   private static void validarNumero(String numero) {
     Validate.notBlank(numero, "Número inválido");
     numero = TextoUtil.removerCaracteresEspeciais(numero);
-    Validate.isTrue(numero.length() < 8, "Número deve conter no minímo 8 dígitos");
+    Validate.isTrue(numero.length() >= 8, "Número deve conter no minímo 8 dígitos");
   }
 }

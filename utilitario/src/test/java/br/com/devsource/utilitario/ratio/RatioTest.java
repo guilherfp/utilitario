@@ -223,4 +223,13 @@ public class RatioTest {
     assertEquals(1.0, Ratio.UM.floatValue(), 0);
     assertEquals(4.64, Ratio.valueOf(4.64).floatValue(), 0.000001);
   }
+
+  @Test
+  public void testIsNegative() throws Exception {
+    assertTrue(Ratio.valueOf(-0.12).isNegative());
+    assertFalse(Ratio.valueOf(0.12).isNegative());
+    assertFalse(Ratio.valueOf(0).isNegative());
+    assertFalse(Ratio.valueOf(-0).isNegative());
+    assertFalse(Ratio.valueOf(1).isNegative());
+  }
 }

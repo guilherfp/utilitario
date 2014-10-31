@@ -1,7 +1,7 @@
 package br.com.devsource.utilitario.telefone;
 
+import static br.com.devsource.utilitario.test.AssertException.assertThrown;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
@@ -9,41 +9,13 @@ public class TelefoneTeste {
 
   @Test
   public void testConstructor() throws Exception {
-    try {
-      new Telefone(null, null);
-      fail();
-    } catch (Exception e) {
-    }
-    try {
-      new Telefone("", null);
-      fail();
-    } catch (Exception e) {
-    }
-    try {
-      new Telefone("", "");
-      fail();
-    } catch (Exception e) {
-    }
-    try {
-      new Telefone("", "12341234");
-      fail();
-    } catch (Exception e) {
-    }
-    try {
-      new Telefone("62", "");
-      fail();
-    } catch (Exception e) {
-    }
-    try {
-      new Telefone("62", "1234567");
-      fail();
-    } catch (Exception e) {
-    }
-    try {
-      new Telefone("62", "1234-567");
-      fail();
-    } catch (Exception e) {
-    }
+    assertThrown(NullPointerException.class, () -> new Telefone(null, null));
+    assertThrown(IllegalArgumentException.class, () -> new Telefone("", null));
+    assertThrown(IllegalArgumentException.class, () -> new Telefone("", ""));
+    assertThrown(IllegalArgumentException.class, () -> new Telefone("", "12341234"));
+    assertThrown(IllegalArgumentException.class, () -> new Telefone("62", ""));
+    assertThrown(IllegalArgumentException.class, () -> new Telefone("62", "1234567"));
+    assertThrown(IllegalArgumentException.class, () -> new Telefone("62", "1234-567"));
   }
 
   @Test

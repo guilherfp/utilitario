@@ -20,6 +20,7 @@ public final class Quantidade<U extends Unidade> implements Comparable<Quantidad
   private Quantidade(Ratio ratio, U unidade) {
     Validate.notNull(ratio);
     Validate.notNull(unidade);
+    Validate.isTrue(ratio.isNegative() == false, "Quantidade negativa inválida");
     this.unidade = unidade;
     quantia = ratio;
   }

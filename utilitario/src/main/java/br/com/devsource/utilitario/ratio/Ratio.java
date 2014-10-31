@@ -85,6 +85,10 @@ public final class Ratio extends Number implements Comparable<Ratio>, Serializab
     return numerador.compareTo(denominador) == 0;
   }
 
+  public boolean isNegative() {
+    return asNumber().signum() == -1;
+  }
+
   public static Ratio valueOf(BigDecimal numerador, BigDecimal denominador) {
     return new Ratio(numerador, denominador);
   }

@@ -14,6 +14,7 @@ public class QuantidadeComprimentoTest {
   public void testDe_numeroInvalido() throws Exception {
     assertThrown(NullPointerException.class, () -> Quantidade.de(null, Comprimento.METRO));
     assertThrown(NullPointerException.class, () -> Quantidade.de(1, null));
+    assertThrown(IllegalArgumentException.class, () -> Quantidade.de(-0.0001, Comprimento.METRO));
   }
 
   @Test
