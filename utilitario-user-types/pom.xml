@@ -1,0 +1,62 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>br.com.devsource</groupId>
+    <artifactId>utilitario-parent</artifactId>
+    <version>1.1.1</version>
+    <relativePath>../utilitario-parent/pom.xml</relativePath>
+  </parent>
+
+  <artifactId>utilitario-user-types</artifactId>
+  <name>Utilitário User Types</name>
+  <description>Tipo customizados de dados para Hiberante</description>
+
+  <properties>
+    <java.version>1.8</java.version>
+    <hibernate.version>4.2.6.Final</hibernate.version>
+    <hibernate.validator.version>5.0.1.Final</hibernate.validator.version>
+    <stela.user.types.version>2.0</stela.user.types.version>
+    <jadira.usertye.version>3.0.0.CR1</jadira.usertye.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>br.com.devsource</groupId>
+      <artifactId>utilitario</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>${hibernate.version}</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>hibernate-jpa-2.0-api</artifactId>
+          <groupId>org.hibernate.javax.persistence</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>dom4j</artifactId>
+          <groupId>dom4j</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>br.com.caelum.stella</groupId>
+      <artifactId>caelum-stella-hibernate-user-types</artifactId>
+      <version>${stela.user.types.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jadira.usertype</groupId>
+      <artifactId>usertype.core</artifactId>
+      <version>${jadira.usertye.version}</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>joda-money</artifactId>
+          <groupId>org.joda</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+  </dependencies>
+
+</project>
