@@ -61,8 +61,7 @@ public class Telefone extends ValueObjectSupport<Telefone> implements Comparable
 
   @Override
   public boolean sameValueAs(Telefone other) {
-    return (other != null)
-        && new EqualsBuilder().append(ddd, other.ddd).append(numero, other.numero).isEquals();
+    return (other != null) && new EqualsBuilder().append(ddd, other.ddd).append(numero, other.numero).isEquals();
   }
 
   @Override
@@ -78,8 +77,6 @@ public class Telefone extends ValueObjectSupport<Telefone> implements Comparable
   private static void validarNumero(String numero) {
     Validate.notBlank(numero, "Número inválido");
     numero = TextoUtil.removerCaracteresEspeciais(numero);
-    if (numero.length() < 8) {
-      throw new IllegalArgumentException("Número deve conter no minímo 8 dígitos");
-    }
+    Validate.isTrue(numero.length() < 8, "Número deve conter no minímo 8 dígitos");
   }
 }
