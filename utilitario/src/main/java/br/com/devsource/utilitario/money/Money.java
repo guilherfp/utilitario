@@ -195,7 +195,7 @@ public final class Money implements Comparable<Money>, Serializable {
     if (factor instanceof BigDecimal) {
       bigFactor = (BigDecimal) factor;
     } else {
-      bigFactor = new BigDecimal(factor.toString());
+      bigFactor = new BigDecimal(factor.toString().replace(',', '.'));
     }
     long result = bigFactor.multiply(new BigDecimal(amount)).longValue();
     return new Money(result, currency);
