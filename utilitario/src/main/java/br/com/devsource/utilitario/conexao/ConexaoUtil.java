@@ -11,9 +11,7 @@ import br.com.devsource.utilitario.excessao.UtilException;
  */
 public final class ConexaoUtil {
 
-  private ConexaoUtil() {
-    super();
-  }
+  private ConexaoUtil() {}
 
   /**
    * Verifica conexão com a internet.
