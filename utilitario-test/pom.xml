@@ -4,6 +4,7 @@
 
   <groupId>br.com.devsource</groupId>
   <artifactId>utilitario-test</artifactId>
+  <packaging>jar</packaging>
   <version>1.2.0</version>
 
   <name>Utilitário de teste Devsource</name>
