@@ -88,6 +88,15 @@ public final class Quantidade<U extends Unidade> implements Comparable<Quantidad
   }
 
   @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = (prime * result) + ((quantia == null) ? 0 : quantia.hashCode());
+    result = (prime * result) + ((unidade == null) ? 0 : unidade.hashCode());
+    return result;
+  }
+
+  @Override
   public boolean equals(Object obj) {
     if (this == obj) {
       return true;

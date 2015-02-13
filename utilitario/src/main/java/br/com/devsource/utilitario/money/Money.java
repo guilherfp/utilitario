@@ -22,7 +22,7 @@ public final class Money implements Comparable<Money>, Serializable {
   private static final long serialVersionUID = 1L;
 
   private static RoundingMode ARREDONDAMENTO = RoundingMode.DOWN;
-  private static RoundingMode arredondamento;
+  private RoundingMode arredondamento;
 
   private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("###,###,##0.00");
   /** Moeda padrão brasileiro (Real). */
@@ -39,8 +39,9 @@ public final class Money implements Comparable<Money>, Serializable {
   private long amount;
   private Currency currency;
 
-  private Money(BigDecimal amount, Currency currency) {
+  private Money(BigDecimal amount, Currency currency, RoundingMode arredondamento) {
     this.amount = toLongRepresentation(amount, currency);
+    this.arredondamento = arredondamento;
     this.currency = currency;
   }
 
@@ -54,17 +55,16 @@ public final class Money implements Comparable<Money>, Serializable {
     ARREDONDAMENTO = arredondamento;
   }
 
-  public Money setArredondamento(RoundingMode arredondamento) {
+  public static void setArredondamentoPadrao(RoundingMode arredondamento) {
     ARREDONDAMENTO = arredondamento;
-    return this;
   }
 
   private RoundingMode getArredondamento() {
     return (arredondamento != null) ? arredondamento : ARREDONDAMENTO;
   }
 
-  public void arredondamentoPadrao() {
-    arredondamento = null;
+  public void arredondamento(RoundingMode arredondamento) {
+    this.arredondamento = arredondamento;
   }
 
   public int scale() {
@@ -304,7 +304,9 @@ public final class Money implements Comparable<Money>, Serializable {
   }
 
   public Money getPorcentage(Ratio value) {
-    return new Money(getAmount().multiply(value.divide(Ratio.valueOf(100)).asNumber(), MathContext.DECIMAL32), currency);
+    final Ratio divisor = value.divide(Ratio.valueOf(100));
+    final BigDecimal multiply = getAmount().multiply(divisor.asNumber(), MathContext.DECIMAL32);
+    return new Money(multiply, currency, arredondamento);
   }
 
   public Ratio porcentageRelative(Money value) {
@@ -428,7 +430,7 @@ public final class Money implements Comparable<Money>, Serializable {
   }
 
   public Money copy() {
-    return new Money(getAmount(), getCurrency());
+    return new Money(getAmount(), getCurrency(), arredondamento);
   }
 
   public boolean isMultiple(Money other) {

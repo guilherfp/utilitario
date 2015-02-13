@@ -187,7 +187,7 @@ public class RatioTest {
   public void testEquals() throws Exception {
     assertTrue(Ratio.ZERO.equals(Ratio.valueOf(0)));
     assertFalse(Ratio.ZERO.equals(null));
-    assertTrue(Ratio.ZERO.equals(BigDecimal.ZERO));
+    assertTrue(Ratio.ZERO.asNumber().equals(BigDecimal.ZERO));
     assertFalse(Ratio.ZERO.equals(BigDecimal.TEN));
     assertFalse(Ratio.ZERO.equals("0"));
   }

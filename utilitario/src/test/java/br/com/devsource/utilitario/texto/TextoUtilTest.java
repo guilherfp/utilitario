@@ -59,18 +59,6 @@ public class TextoUtilTest {
   }
 
   @Test
-  public void testFormataData() throws Exception {
-    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy HH:mm");
-    Assert.assertEquals("10/10/2010", TextoUtil.formataData(format.parse("10/10/10 08:10")));
-  }
-
-  @Test
-  public void testFormataDataHora() throws Exception {
-    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy HH:mm");
-    Assert.assertEquals("10/10/2010 08:10:00", TextoUtil.formataDataHora(format.parse("10/10/10 08:10")));
-  }
-
-  @Test
   public void testeMensagemSaudacao() throws ParseException {
     SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy HH:mm");
     Assert.assertEquals("Bom dia", TextoUtil.getSaudacao(format.parse("10/10/10 08:10")));

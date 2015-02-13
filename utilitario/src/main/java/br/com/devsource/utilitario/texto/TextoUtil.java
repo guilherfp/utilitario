@@ -2,7 +2,6 @@ package br.com.devsource.utilitario.texto;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Arrays;
@@ -18,8 +17,6 @@ import br.com.devsource.utilitario.ratio.Ratio;
  */
 public final class TextoUtil {
 
-  private static final SimpleDateFormat F_DATA = new SimpleDateFormat("dd/MM/yyyy");
-  private static final SimpleDateFormat F_DATA_HORA = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
   private static final String[] PREPOSICOES = { "de", "da", "do", "e" };
   private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#,##0");
 
@@ -122,26 +119,6 @@ public final class TextoUtil {
    */
   public static String getSimOuNao(boolean valor) {
     return (valor) ? "Sim" : "Não";
-  }
-
-  /**
-   * Formata da no seguinte padrão dd/MM/yyyy.
-   * @param date Date a ser formatada.
-   * @return texto referente a data.
-   */
-  public static String formataData(Date date) {
-    Validate.notNull(date, "Data inválida");
-    return F_DATA.format(date);
-  }
-
-  /**
-   * Formata da no seguinte padrão dd/MM/yyyy HH:mm:ss.
-   * @param date Data a ser formatada.
-   * @return texto referente a data.
-   */
-  public static String formataDataHora(Date date) {
-    Validate.notNull(date, "Data inválida");
-    return F_DATA_HORA.format(date);
   }
 
   /**
