@@ -2,15 +2,15 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>br.com.devsource</groupId>
-    <artifactId>utilitario-parent</artifactId>
-    <version>1.1.1</version>
-  </parent>
-
+  <groupId>br.com.devsource</groupId>
   <artifactId>utilitario-test</artifactId>
+  <version>1.2.0</version>
 
   <name>Utilitário de teste Devsource</name>
+
+  <properties>
+    <java.version>1.8</java.version>
+  </properties>
 
   <dependencies>
     <dependency>
@@ -24,4 +24,19 @@
       <version>4.11</version>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.1</version>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
