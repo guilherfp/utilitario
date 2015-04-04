@@ -109,7 +109,8 @@ public final class Money implements Comparable<Money>, Serializable {
    */
   public int getCentavos() {
     int cdp = currency.getDefaultFractionDigits();
-    return getAmount().setScale(cdp, getArredondamento()).remainder(BigDecimal.ONE).movePointRight(cdp).intValueExact();
+    final BigDecimal amount = getAmount().setScale(cdp, getArredondamento());
+    return amount.remainder(BigDecimal.ONE).movePointRight(cdp).intValueExact();
   }
 
   /**
@@ -217,7 +218,8 @@ public final class Money implements Comparable<Money>, Serializable {
    * @throws IllegalArgumentException Caso factor não seja maior do que zero.
    */
   public Money[] distribute(int factor) throws IllegalArgumentException {
-    org.apache.commons.lang3.Validate.isTrue(factor > 0, "Fator de distribuição deve ser maior do que zero");
+    org.apache.commons.lang3.Validate.isTrue(factor > 0,
+      "Fator de distribuição deve ser maior do que zero");
     BigInteger bigValue = BigInteger.valueOf(amount);
     BigInteger[] result = bigValue.divideAndRemainder(BigInteger.valueOf(factor));
     Money[] distribution = new Money[factor];
@@ -314,8 +316,8 @@ public final class Money implements Comparable<Money>, Serializable {
   }
 
   public Ratio porcentageRelative(double value) {
-    return Ratio.valueOf(BigDecimal.valueOf(value).multiply(BigDecimal.valueOf(100)).divide(getAmount(), 10,
-      getArredondamento()));
+    return Ratio.valueOf(BigDecimal.valueOf(value).multiply(BigDecimal.valueOf(100)).divide(
+      getAmount(), 10, getArredondamento()));
   }
 
   private static long toLongRepresentation(BigDecimal value, Currency currency) {
@@ -398,7 +400,8 @@ public final class Money implements Comparable<Money>, Serializable {
    */
   @Override
   public String toString() {
-    return currency.getSymbol().concat(" ").concat(DECIMAL_FORMAT.format(getAmount().doubleValue()));
+    return currency.getSymbol().concat(" ")
+      .concat(DECIMAL_FORMAT.format(getAmount().doubleValue()));
   }
 
   /**
@@ -426,7 +429,8 @@ public final class Money implements Comparable<Money>, Serializable {
       return false;
     }
     Money other = (Money) obj;
-    return new EqualsBuilder().append(amount, other.amount).append(currency, other.currency).isEquals();
+    return new EqualsBuilder().append(amount, other.amount).append(currency, other.currency)
+      .isEquals();
   }
 
   public Money copy() {

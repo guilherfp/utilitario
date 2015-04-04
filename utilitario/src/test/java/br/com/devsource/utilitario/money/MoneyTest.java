@@ -179,8 +179,8 @@ public class MoneyTest {
 
   @Test
   public void testToString() {
-    Money valor = Money.valueOf(2.20);
-    assertEquals("R$ 2,20", valor.toString());
+    assertEquals("R$ 2,20", Money.valueOf(2.20).toString());
+    assertEquals("R$ 2.500,20", Money.valueOf(2500.20).toString());
   }
 
   @Test
