@@ -23,7 +23,7 @@
 
   <dependencies>
     <dependency>
-      <groupId>br.com.devsource</groupId>
+      <groupId>br.com.devsource.util</groupId>
       <artifactId>utilitario</artifactId>
     </dependency>
     <dependency>
