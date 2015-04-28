@@ -6,6 +6,7 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
 
+import javax.management.modelmbean.XMLParseException;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -47,22 +48,30 @@ public final class XmlUtils<T> {
     return writer.toString();
   }
 
-  public String marshalToFileName(T object, String fileName) throws Exception {
-    return marshalToFile(object, new File(fileName));
+  public String marshalToFileName(T object, String fileName) throws XMLParseException {
+    try {
+      return marshalToFile(object, new File(fileName));
+    } catch (Exception ex) {
+      throw new XMLParseException(ex, "Não foi possível converter o arquivo");
+    }
   }
 
-  public String marshalToFile(T object, File file) throws Exception {
-    String xml = marshal(object);
-    Writer writer = new FileWriter(file);
-    writer.write(xml);
-    writer.close();
-    return xml;
+  public String marshalToFile(T object, File file) throws XMLParseException {
+    try {
+      String xml = marshal(object);
+      Writer writer = new FileWriter(file);
+      writer.write(xml);
+      writer.close();
+      return xml;
+    } catch (Exception ex) {
+      throw new XMLParseException(ex, "Não foi possível converter o arquivo");
+    }
   }
 
   @SuppressWarnings("unchecked")
   public static <T> T fromXml(String xmlString, Class<T> type) throws JAXBException {
-    return (T) JAXBContext.newInstance(type).createUnmarshaller().unmarshal(
-      new StringReader(xmlString));
+    JAXBContext jaxbContext = JAXBContext.newInstance(type);
+    return (T) jaxbContext.createUnmarshaller().unmarshal(new StringReader(xmlString));
   }
 
   @SuppressWarnings({ "rawtypes", "unchecked" })

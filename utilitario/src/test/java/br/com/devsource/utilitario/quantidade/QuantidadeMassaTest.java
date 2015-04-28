@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import br.com.devsource.utilitario.quantidade.grandezas.Massa;
+import br.com.devsource.utilitario.quantidade.unidade.Massa;
 import br.com.devsource.utilitario.ratio.Ratio;
 
 public class QuantidadeMassaTest {

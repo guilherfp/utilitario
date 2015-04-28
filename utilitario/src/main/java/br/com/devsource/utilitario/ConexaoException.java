@@ -1,4 +1,4 @@
-package br.com.devsource.utilitario.conexao;
+package br.com.devsource.utilitario;
 
 /**
  * @author Guilherme Pacheco

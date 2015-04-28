@@ -1,9 +1,7 @@
-package br.com.devsource.utilitario.quantidade.grandezas;
+package br.com.devsource.utilitario.quantidade.unidade;
 
 import java.util.Arrays;
 import java.util.Collection;
-
-import br.com.devsource.utilitario.quantidade.Quantidade;
 
 /**
  * @author Guilherme Pacheco
@@ -26,14 +24,10 @@ public enum Massa implements Unidade {
   /** miriagrama: 10^4 gramas. */
   MIRIAGRAMA("miriagrama", "mag", 4);
 
-  private final String nome;
-  private final String simbolo;
-  private final double multiplo;
+  private final UnidadeValue unidadeValue;
 
   private Massa(String nome, String simbolo, double multiplo) {
-    this.nome = nome;
-    this.simbolo = simbolo;
-    this.multiplo = multiplo;
+    unidadeValue = new UnidadeValue(nome, simbolo, multiplo);
   }
 
   public Collection<Massa> convencionais() {
@@ -41,27 +35,12 @@ public enum Massa implements Unidade {
   }
 
   @Override
-  public String getNome() {
-    return nome;
-  }
-
-  @Override
-  public String getSimbolo() {
-    return simbolo;
-  }
-
-  @Override
-  public double getMultiplo() {
-    return multiplo;
+  public UnidadeValue getValue() {
+    return unidadeValue;
   }
 
   @Override
   public Massa padraoSI() {
     return GRAMA;
   }
-
-  public Quantidade<Massa> de(Number quantida) {
-    return Quantidade.de(quantida, this);
-  }
-
 }

@@ -5,8 +5,6 @@ import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
-import br.com.devsource.utilitario.texto.ValoresUtils;
-
 /**
  * Classe de teste da classe ValoresUtil.java
  * @author Guilherme Freitas

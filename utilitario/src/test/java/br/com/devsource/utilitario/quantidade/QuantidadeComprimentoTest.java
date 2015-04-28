@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import br.com.devsource.utilitario.quantidade.grandezas.Comprimento;
+import br.com.devsource.utilitario.quantidade.unidade.Comprimento;
 import br.com.devsource.utilitario.ratio.Ratio;
 
 public class QuantidadeComprimentoTest {
@@ -26,15 +26,19 @@ public class QuantidadeComprimentoTest {
   @Test
   public void testeConversao() {
     Quantidade<Comprimento> milMetros = Quantidade.de(Ratio.valueOf(1_000), Comprimento.METRO);
-    assertEquals(Quantidade.de(Ratio.valueOf(1), Comprimento.QUILOMETRO), milMetros.to(Comprimento.QUILOMETRO));
+    assertEquals(Quantidade.de(Ratio.valueOf(1), Comprimento.QUILOMETRO), milMetros
+      .to(Comprimento.QUILOMETRO));
 
     Quantidade<Comprimento> cemMetros = Quantidade.de(Ratio.valueOf(100), Comprimento.METRO);
-    assertEquals(Quantidade.de(Ratio.valueOf(0.1), Comprimento.QUILOMETRO), cemMetros.to(Comprimento.HECTOMETRO));
+    assertEquals(Quantidade.de(Ratio.valueOf(0.1), Comprimento.QUILOMETRO), cemMetros
+      .to(Comprimento.HECTOMETRO));
 
-    Quantidade<Comprimento> dezDecametros = Quantidade.de(Ratio.valueOf(100), Comprimento.DECAMETRO);
+    Quantidade<Comprimento> dezDecametros =
+        Quantidade.de(Ratio.valueOf(100), Comprimento.DECAMETRO);
     assertEquals(Quantidade.de(Ratio.valueOf(1), Comprimento.QUILOMETRO), dezDecametros);
 
-    assertEquals(Quantidade.de(Ratio.valueOf(1_000_000), Comprimento.MILIMETRO), milMetros.to(Comprimento.MILIMETRO));
+    assertEquals(Quantidade.de(Ratio.valueOf(1_000_000), Comprimento.MILIMETRO), milMetros
+      .to(Comprimento.MILIMETRO));
   }
 
   @Test
@@ -74,6 +78,6 @@ public class QuantidadeComprimentoTest {
   @Test
   public void testQuantidadeDeUnidade() throws Exception {
     Quantidade<Comprimento> quantidade = Quantidade.de(Ratio.UM, Comprimento.METRO);
-    assertEquals(Comprimento.METRO.de(Ratio.UM), quantidade);
+    assertEquals(Quantidade.de(Ratio.UM, Comprimento.METRO), quantidade);
   }
 }

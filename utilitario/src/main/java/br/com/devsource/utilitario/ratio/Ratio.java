@@ -27,6 +27,10 @@ public final class Ratio extends Number implements Comparable<Ratio>, Serializab
   private BigDecimal numerador;
   private BigDecimal denominador;
 
+  Ratio() {
+    super();
+  }
+
   Ratio(BigDecimal numerador, BigDecimal denominador) {
     Validate.notNull(numerador, "Numerador inválido");
     Validate.notNull(denominador, "Denominador inválido");

@@ -1,4 +1,4 @@
-package br.com.devsource.utilitario.conexao;
+package br.com.devsource.utilitario;
 
 import java.net.HttpURLConnection;
 import java.net.URL;

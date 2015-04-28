@@ -1,4 +1,4 @@
-package br.com.devsource.utilitario.conexao;
+package br.com.devsource.utilitario;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -114,14 +114,18 @@ public final class JDBCUtils {
    * Cria um schema.
    * @param jndiResource Recurso JNDI a ser utilizado.
    * @param schema Schema a ser criado.
-   * @throws SQLException Erro de execução do SQL.
-   * @throws NamingException Recurso JNDI não localizado.
+   * @throws ConexaoException Erro de execução do SQL.
+   * @throws ConexaoException Recurso JNDI não localizado.
    */
-  public static void createSchema(String jndiResource, String schema) throws Exception {
-    String sql = String.format("create database %s", schema);
-    PreparedStatement pstmt = getConnection(jndiResource).prepareStatement(sql);
-    pstmt.execute();
-    pstmt.close();
+  public static void createSchema(String jndiResource, String schema) throws ConexaoException {
+    try {
+      String sql = String.format("create database %s", schema);
+      PreparedStatement pstmt = getConnection(jndiResource).prepareStatement(sql);
+      pstmt.execute();
+      pstmt.close();
+    } catch (SQLException ex) {
+      throw new ConexaoException(ex);
+    }
   }
 
   /**
@@ -129,10 +133,14 @@ public final class JDBCUtils {
    * @param jndiResource Nome do Recurso JNDI utilizado para obter a conexão.
    * @@param jndiResource Recurso JNDI a ser utilizado.
    * @param sql SQL a ser executada.
-   * @throws SQLException Caso tenha erro de SQL.
-   * @throws NamingException Caso não possa obter um JNDI.
+   * @throws ConexaoException Caso tenha erro de SQL.
+   * @throws ConexaoException Caso não possa obter um JNDI.
    */
-  public static void executeSQL(String jndiResource, String sql) throws Exception {
-    getConnection(jndiResource).prepareStatement(sql).execute();
+  public static void executeSQL(String jndiResource, String sql) throws ConexaoException {
+    try {
+      getConnection(jndiResource).prepareStatement(sql).execute();
+    } catch (SQLException ex) {
+      throw new ConexaoException(ex);
+    }
   }
 }

@@ -1,9 +1,7 @@
-package br.com.devsource.utilitario.quantidade.grandezas;
+package br.com.devsource.utilitario.quantidade.unidade;
 
 import java.util.Arrays;
 import java.util.Collection;
-
-import br.com.devsource.utilitario.quantidade.Quantidade;
 
 /**
  * Grandezas de comprimento.
@@ -53,14 +51,10 @@ public enum Comprimento implements Unidade {
   /** yottametro (Ym): 10^24 metros. */
   YOTTAMETRO("yottametro", "Ym", 24);
 
-  private final String nome;
-  private final String simbolo;
-  private final double multiplo;
+  private final UnidadeValue unidadeValue;
 
   private Comprimento(String nome, String simbolo, double multiplo) {
-    this.nome = nome;
-    this.simbolo = simbolo;
-    this.multiplo = multiplo;
+    unidadeValue = new UnidadeValue(nome, simbolo, multiplo);
   }
 
   public Collection<Comprimento> convencionais() {
@@ -68,27 +62,12 @@ public enum Comprimento implements Unidade {
   }
 
   @Override
-  public String getNome() {
-    return nome;
-  }
-
-  @Override
-  public String getSimbolo() {
-    return simbolo;
-  }
-
-  @Override
-  public double getMultiplo() {
-    return multiplo;
+  public UnidadeValue getValue() {
+    return unidadeValue;
   }
 
   @Override
   public Comprimento padraoSI() {
     return METRO;
   }
-
-  public Quantidade<Comprimento> de(Number quantida) {
-    return Quantidade.de(quantida, this);
-  }
-
 }
