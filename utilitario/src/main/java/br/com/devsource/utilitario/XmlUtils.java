@@ -1,8 +1,7 @@
-package br.com.devsource.utilitario.xml;
+package br.com.devsource.utilitario;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -18,7 +17,7 @@ import javax.xml.transform.stream.StreamResult;
  * @author Guilherme Freitas
  * @param <T> Tipo do objeto a ser trabalhado.
  */
-public final class XmlUtil<T> {
+public final class XmlUtils<T> {
   private final Class<T> type;
   private final JAXBContext context;
   private final Marshaller marshaller;
@@ -29,7 +28,7 @@ public final class XmlUtil<T> {
    * @param type Classe do objeto a ser convertido.
    * @throws JAXBException {@link JAXBContext}
    */
-  private XmlUtil(Class<T> type) throws JAXBException {
+  private XmlUtils(Class<T> type) throws JAXBException {
     this.type = type;
     this.context = JAXBContext.newInstance(this.type);
     this.marshaller = context.createMarshaller();
@@ -48,11 +47,11 @@ public final class XmlUtil<T> {
     return writer.toString();
   }
 
-  public String marshalToFileName(T object, String fileName) throws JAXBException, IOException {
+  public String marshalToFileName(T object, String fileName) throws Exception {
     return marshalToFile(object, new File(fileName));
   }
 
-  public String marshalToFile(T object, File file) throws JAXBException, IOException {
+  public String marshalToFile(T object, File file) throws Exception {
     String xml = marshal(object);
     Writer writer = new FileWriter(file);
     writer.write(xml);
@@ -62,15 +61,16 @@ public final class XmlUtil<T> {
 
   @SuppressWarnings("unchecked")
   public static <T> T fromXml(String xmlString, Class<T> type) throws JAXBException {
-    return (T) JAXBContext.newInstance(type).createUnmarshaller().unmarshal(new StringReader(xmlString));
+    return (T) JAXBContext.newInstance(type).createUnmarshaller().unmarshal(
+      new StringReader(xmlString));
   }
 
   @SuppressWarnings({ "rawtypes", "unchecked" })
   public static String toXml(Object object) throws JAXBException {
-    return new XmlUtil(object.getClass()).marshal(object);
+    return new XmlUtils(object.getClass()).marshal(object);
   }
 
-  public static <T> XmlUtil<T> create(Class<T> type) throws JAXBException {
-    return new XmlUtil<>(type);
+  public static <T> XmlUtils<T> create(Class<T> type) throws JAXBException {
+    return new XmlUtils<>(type);
   }
 }

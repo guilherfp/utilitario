@@ -1,4 +1,4 @@
-package br.com.devsource.utilitario.validator;
+package br.com.devsource.utilitario;
 
 import org.apache.commons.lang3.Validate;
 
@@ -9,14 +9,16 @@ import br.com.devsource.utilitario.ratio.Ratio;
  * Classe de validação e valor.
  * @author Guilherme Freitas em 28/05/2014.
  */
-public class ValidateUtil {
+public class ValidateUtils {
 
   private static final String DEFAULT_NAO_E_MAIOR_QUE_UM_CENTAVO = "%s não é maior que um centavo";
   private static final String DEFAULT_MAIOR_DO_QUE = "%s não é maior do que %s";
   private static final String DEFAULT_MAIOR_OU_IGUAL_A = "%s não é maior nem igual a %s";
   private static final String DEFAULT_MENOR_DO_QUE = "%s não é menor do que %s";
 
-  private ValidateUtil() {}
+  private ValidateUtils() {
+    super();
+  }
 
   /**
    * Valida de o valor monetário é maior que um centávo.
@@ -61,7 +63,8 @@ public class ValidateUtil {
     isMaiorDoQue(excepted, actual, DEFAULT_MAIOR_DO_QUE, excepted, actual);
   }
 
-  public static void isMaiorOuIgualA(Ratio excepted, Ratio actual, String message, Object... values) {
+  public static void
+      isMaiorOuIgualA(Ratio excepted, Ratio actual, String message, Object... values) {
     Validate.notNull(excepted);
     Validate.notNull(actual);
     Validate.isTrue(excepted.maiorOuIqualA(actual), message, values);
@@ -71,7 +74,8 @@ public class ValidateUtil {
     isMaiorOuIgualA(excepted, actual, DEFAULT_MAIOR_OU_IGUAL_A, excepted, actual);
   }
 
-  public static void isMaiorOuIgualA(Money excepted, Money actual, String message, Object... values) {
+  public static void
+      isMaiorOuIgualA(Money excepted, Money actual, String message, Object... values) {
     Validate.notNull(excepted);
     Validate.notNull(actual);
     Validate.isTrue(excepted.maiorOuIgualA(actual), message, values);
@@ -89,5 +93,9 @@ public class ValidateUtil {
 
   public static void isMenorDoQue(Money excepted, Money actual) {
     isMenorDoQue(excepted, actual, DEFAULT_MENOR_DO_QUE, excepted, actual);
+  }
+
+  public static ValidateSize size(String string) {
+    return new ValidateSize(string);
   }
 }

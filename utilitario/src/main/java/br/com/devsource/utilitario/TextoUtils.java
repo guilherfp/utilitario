@@ -1,4 +1,4 @@
-package br.com.devsource.utilitario.texto;
+package br.com.devsource.utilitario;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.lang3.Validate;
 
@@ -15,12 +16,18 @@ import br.com.devsource.utilitario.ratio.Ratio;
  * Classe utilitária para tratamento de texto.
  * @author Guilherme Freitas
  */
-public final class TextoUtil {
+public final class TextoUtils {
 
-  private static final String[] PREPOSICOES = { "de", "da", "do", "e" };
+  private static final List<String> PREPOSICOES;
   private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#,##0");
 
-  private TextoUtil() {}
+  static {
+    PREPOSICOES = Arrays.asList(new String[] { "de", "da", "do", "e" });
+  }
+
+  private TextoUtils() {
+    super();
+  }
 
   /**
    * Remove dígitos da string.
@@ -74,21 +81,19 @@ public final class TextoUtil {
    * @param nome a ser tratada.
    * @return string formatada.
    */
-  public static String formatarNomeProprio(String nome) {
-    Validate.notNull(nome, "Nome não pode ser nulo!");
-    nome = removerEspacos(nome.toLowerCase());
-    char[] array = removerEspacos(nome).toCharArray();
+  public static String formatarNomeProprio(final String nome) {
+    if (nome == null) {
+      return null;
+    }
+    String nomeSemEspacos = removerEspacos(nome.toLowerCase());
+    final char[] array = removerEspacos(nomeSemEspacos).toCharArray();
     for (int i = 0; i < array.length; i++) {
       if (i == 0) {
         array[i] = String.valueOf(array[i]).toUpperCase().charAt(0);
       } else if (array[i] == ' ') {
         boolean isPreposicao = false;
         if ((array.length - i) > 2) {
-          String posEspado =
-              String.valueOf(String.valueOf(array[i + 1]).concat(String.valueOf(array[i + 2])));
-          if (Arrays.asList(PREPOSICOES).contains(posEspado)) {
-            isPreposicao = true;
-          }
+          isPreposicao = PREPOSICOES.contains(String.format("%s%s", array[i + 1], array[i + 2]));
         }
         if (!isPreposicao) {
           array[i + 1] = String.valueOf(array[i + 1]).toUpperCase().charAt(0);
@@ -205,16 +210,18 @@ public final class TextoUtil {
    * @return Valor formatado.
    */
   public static String formataQuantidade(Ratio ratio, int maxDecimalDigits) {
-    if (maxDecimalDigits < 0) {
-      maxDecimalDigits = 0;
+    int digits = 0;
+    if (maxDecimalDigits > 0) {
+      digits = maxDecimalDigits;
     }
     BigDecimal value = ratio.asNumber();
-    int decimal = (int) value.doubleValue();
-    double fractional = value.doubleValue() - decimal;
-    if (0 == fractional) {
+    final int decimal = (int) value.doubleValue();
+    final double fractional = value.doubleValue() - decimal;
+    if (Double.compare(fractional, 0.0) == 0) {
       return String.valueOf(value.intValue());
     } else {
-      return String.format("%." + maxDecimalDigits + "f", value.doubleValue());
+      String mask = "%.".concat(String.valueOf(digits));
+      return String.format(mask.concat("f"), value.doubleValue());
     }
   }
 

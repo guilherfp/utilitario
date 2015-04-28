@@ -91,7 +91,7 @@ public final class Money implements Comparable<Money>, Serializable {
    * @return <code>true</code> caso o valor seja maior que o informado e <code>false</code> caso contrário.
    */
   public boolean maiorQue(Money other) {
-    return (compareTo(other) > 0);
+    return compareTo(other) > 0;
   }
 
   /**
@@ -109,8 +109,8 @@ public final class Money implements Comparable<Money>, Serializable {
    */
   public int getCentavos() {
     int cdp = currency.getDefaultFractionDigits();
-    final BigDecimal amount = getAmount().setScale(cdp, getArredondamento());
-    return amount.remainder(BigDecimal.ONE).movePointRight(cdp).intValueExact();
+    BigDecimal newAmount = getAmount().setScale(cdp, getArredondamento());
+    return newAmount.remainder(BigDecimal.ONE).movePointRight(cdp).intValueExact();
   }
 
   /**
@@ -124,7 +124,7 @@ public final class Money implements Comparable<Money>, Serializable {
    * @return Retorna valor positivo.
    */
   public Money abs() {
-    return (isNegative() ? negate() : this);
+    return isNegative() ? negate() : this;
   }
 
   /**
@@ -140,7 +140,7 @@ public final class Money implements Comparable<Money>, Serializable {
    * @return <code>true</code> caso o valor seja menor que o informado e <code>false</code> caso contrário.
    */
   public boolean isMenorQue(Money other) {
-    return (compareTo(other) < 0);
+    return compareTo(other) < 0;
   }
 
   /**
@@ -217,7 +217,7 @@ public final class Money implements Comparable<Money>, Serializable {
    * @return Array de money com a quantidade informada pelo factor.
    * @throws IllegalArgumentException Caso factor não seja maior do que zero.
    */
-  public Money[] distribute(int factor) throws IllegalArgumentException {
+  public Money[] distribute(int factor) {
     org.apache.commons.lang3.Validate.isTrue(factor > 0,
       "Fator de distribuição deve ser maior do que zero");
     BigInteger bigValue = BigInteger.valueOf(amount);

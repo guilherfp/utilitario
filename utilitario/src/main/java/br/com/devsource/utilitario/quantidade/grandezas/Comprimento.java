@@ -1,15 +1,13 @@
 package br.com.devsource.utilitario.quantidade.grandezas;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 
 import br.com.devsource.utilitario.quantidade.Quantidade;
-import br.com.devsource.utilitario.ratio.Ratio;
 
 /**
  * Grandezas de comprimento.
- * @author Guilherme Freitas em 28/05/2014.
+ * @author Guilherme Freitas
  */
 public enum Comprimento implements Unidade {
   /** yoctômetro (µm): 10^-24 metros. */
@@ -55,15 +53,6 @@ public enum Comprimento implements Unidade {
   /** yottametro (Ym): 10^24 metros. */
   YOTTAMETRO("yottametro", "Ym", 24);
 
-  private static final Collection<Comprimento> convencionais = new ArrayList<>(7);
-
-  static {
-    convencionais.add(Comprimento.MILIMETRO);
-    convencionais.add(Comprimento.CENTIMETRO);
-    convencionais.add(Comprimento.METRO);
-    convencionais.add(Comprimento.QUILOMETRO);
-  }
-
   private final String nome;
   private final String simbolo;
   private final double multiplo;
@@ -74,12 +63,8 @@ public enum Comprimento implements Unidade {
     this.multiplo = multiplo;
   }
 
-  /**
-   * @return Retorna coleção de valores de uso mais convêncional.
-   * @author Guilherme Freitas em 28/05/2014.
-   */
-  public final Collection<Comprimento> convencionais() {
-    return Collections.unmodifiableCollection(convencionais);
+  public Collection<Comprimento> convencionais() {
+    return Arrays.asList(MILIMETRO, CENTIMETRO, METRO, QUILOMETRO);
   }
 
   @Override
@@ -102,13 +87,8 @@ public enum Comprimento implements Unidade {
     return METRO;
   }
 
-  @Override
   public Quantidade<Comprimento> de(Number quantida) {
     return Quantidade.de(quantida, this);
-  }
-
-  public Quantidade<Comprimento> um() {
-    return Quantidade.de(Ratio.UM, this);
   }
 
 }

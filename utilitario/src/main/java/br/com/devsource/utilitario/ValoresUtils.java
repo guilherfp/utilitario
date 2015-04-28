@@ -1,4 +1,4 @@
-package br.com.devsource.utilitario.texto;
+package br.com.devsource.utilitario;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
@@ -9,7 +9,7 @@ import java.util.Locale;
  * Classe utilitária para tratamento de valores monetários.
  * @author Guilherme Freitas
  */
-public final class ValoresUtil {
+public final class ValoresUtils {
 
   private static final String FORMAT = "¤ ###,###,##0.00";
 
@@ -28,7 +28,9 @@ public final class ValoresUtil {
   /** Mascara de dinheiro para Real Brasileiro */
   public static final DecimalFormat REAL = new DecimalFormat(FORMAT, DFS_REAL);
 
-  private ValoresUtil() {}
+  private ValoresUtils() {
+    super();
+  }
 
   /**
    * Mascara texto com formatação monetária.

@@ -20,7 +20,7 @@ public final class Quantidade<U extends Unidade> implements Comparable<Quantidad
   private Quantidade(Ratio ratio, U unidade) {
     Validate.notNull(ratio);
     Validate.notNull(unidade);
-    Validate.isTrue(ratio.isNegative() == false, "Quantidade negativa inválida");
+    Validate.isTrue(!ratio.isNegative(), "Quantidade negativa inválida");
     this.unidade = unidade;
     quantia = ratio;
   }
@@ -78,7 +78,8 @@ public final class Quantidade<U extends Unidade> implements Comparable<Quantidad
   }
 
   public Quantidade<U> to(U unidadeDesejada) {
-    Ratio quantidaDesejada = Ratio.valueOf(Math.pow(10, unidade.getMultiplo() - unidadeDesejada.getMultiplo()));
+    Ratio quantidaDesejada =
+        Ratio.valueOf(Math.pow(10, unidade.getMultiplo() - unidadeDesejada.getMultiplo()));
     return new Quantidade<U>(quantia.mutiply(quantidaDesejada), unidadeDesejada);
   }
 
@@ -101,13 +102,13 @@ public final class Quantidade<U extends Unidade> implements Comparable<Quantidad
     if (this == obj) {
       return true;
     }
-    if ((obj == null) || (obj.getClass() != Quantidade.class)) {
+    if ((obj == null) || !(obj instanceof Quantidade<?>)) {
       return false;
     }
-    @SuppressWarnings("unchecked") Quantidade<U> other = (Quantidade<U>) obj;
+    Quantidade<?> other = (Quantidade<?>) obj;
     Ratio a = quantia.mutiply(Ratio.valueOf(Math.pow(10, unidade.getMultiplo())));
     Ratio b = other.quantia.mutiply(Ratio.valueOf(Math.pow(10, other.unidade.getMultiplo())));
-    return (a.equals(b));
+    return a.equals(b);
   }
 
   @Override

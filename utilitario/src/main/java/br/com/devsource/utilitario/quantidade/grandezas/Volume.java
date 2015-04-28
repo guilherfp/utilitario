@@ -1,11 +1,13 @@
 package br.com.devsource.utilitario.quantidade.grandezas;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 
 import br.com.devsource.utilitario.quantidade.Quantidade;
 
+/**
+ * @author Guilherme Pacheco
+ */
 public enum Volume implements Unidade {
 
   /** yoctômetro (µm³³): 10^-24 metros cúbicos. */
@@ -51,14 +53,6 @@ public enum Volume implements Unidade {
   /** yottametro (Ym³): 10^24 metros cúbicos. */
   YOTTAMETRO_CUBICO("yottametro", "Ym", 24);
 
-  private static final Collection<Volume> convencionais = new ArrayList<>(7);
-
-  static {
-    convencionais.add(Volume.MILIMETRO_CUBICO);
-    convencionais.add(Volume.CENTIMETRO_CUBICO);
-    convencionais.add(Volume.METRO_CUBICO);
-  }
-
   private final String nome;
   private final String simbolo;
   private final double multiplo;
@@ -69,8 +63,8 @@ public enum Volume implements Unidade {
     this.multiplo = multiplo;
   }
 
-  public static Collection<Volume> convencionais() {
-    return Collections.unmodifiableCollection(convencionais);
+  public Collection<Volume> convencionais() {
+    return Arrays.asList(MILIMETRO_CUBICO, CENTIMETRO_CUBICO, METRO_CUBICO);
   }
 
   @Override
@@ -93,8 +87,7 @@ public enum Volume implements Unidade {
     return METRO_CUBICO;
   }
 
-  @Override
   public Quantidade<Volume> de(Number quantida) {
-    return Quantidade.de(1, this);
+    return Quantidade.de(quantida, this);
   }
 }

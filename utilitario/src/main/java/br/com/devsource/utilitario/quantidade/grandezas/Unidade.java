@@ -1,8 +1,8 @@
 package br.com.devsource.utilitario.quantidade.grandezas;
 
-import br.com.devsource.utilitario.quantidade.Quantidade;
+import java.io.Serializable;
 
-public interface Unidade {
+public interface Unidade extends Serializable {
 
   /**
    * @return Retorna o nome.
@@ -20,7 +20,5 @@ public interface Unidade {
   double getMultiplo();
 
   Unidade padraoSI();
-
-  Quantidade<?> de(Number quantida);
 
 }

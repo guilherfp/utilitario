@@ -1,4 +1,4 @@
-package br.com.devsource.utilitario.xml;
+package br.com.devsource.utilitario;
 
 import static org.junit.Assert.assertEquals;
 
@@ -6,23 +6,25 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.junit.Test;
 
+import br.com.devsource.utilitario.XmlUtils;
+
 /**
  * @author Guilherme Pacheco
  */
-public class XmlUtilTeste {
+public class XmlUtilsTest {
 
   @Test
   public void testToXml() throws Exception {
     Pessoa pessoa = new Pessoa("Pessoa10", 10);
     String xml = "<pessoa><idade>10</idade><nome>Pessoa10</nome></pessoa>";
-    assertEquals(xml, XmlUtil.toXml(pessoa));
+    assertEquals(xml, XmlUtils.toXml(pessoa));
   }
 
   @Test
   public void testFromXml() throws Exception {
     Pessoa pessoa1 = new Pessoa("Pessoa10", 10);
-    String xml = XmlUtil.toXml(pessoa1);
-    Pessoa pessoa2 = XmlUtil.fromXml(xml, Pessoa.class);
+    String xml = XmlUtils.toXml(pessoa1);
+    Pessoa pessoa2 = XmlUtils.fromXml(xml, Pessoa.class);
     assertEquals(pessoa1.getNome(), pessoa2.getNome());
     assertEquals(pessoa1.getIdade(), pessoa2.getIdade());
   }

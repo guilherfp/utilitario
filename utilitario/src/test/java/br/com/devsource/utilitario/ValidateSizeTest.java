@@ -1,10 +1,8 @@
-package br.com.devsource.utilitario.validador;
+package br.com.devsource.utilitario;
 
 import org.junit.Test;
 
-import br.com.devsource.utilitario.validator.ValidateUtils;
-
-public class ValidateUtilsTest {
+public class ValidateSizeTest {
 
   @Test(expected = RuntimeException.class)
   public void testValidadeSize_minSize() throws Exception {

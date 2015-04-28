@@ -4,22 +4,20 @@ import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import br.com.devsource.utilitario.texto.TextoUtil;
+import br.com.devsource.utilitario.TextoUtils;
 
 /**
  * Classe representa um número telefônico.
  * @author Guilherme Freitas
  */
-@SuppressWarnings("javadoc")
 public class Telefone implements Comparable<Telefone> {
 
   private String ddd;
   private String numero;
 
-  /**
-   * Construtor para hibernate.
-   */
-  Telefone() {}
+  Telefone() {
+    super();
+  }
 
   public Telefone(String ddd, String numero) {
     Validate.notBlank(ddd, "DDD inválido");
@@ -80,7 +78,7 @@ public class Telefone implements Comparable<Telefone> {
 
   private static void validarNumero(String numero) {
     Validate.notBlank(numero, "Número inválido");
-    numero = TextoUtil.removerCaracteresEspeciais(numero);
-    Validate.isTrue(numero.length() >= 8, "Número deve conter no minímo 8 dígitos");
+    String numeroTelefone = TextoUtils.removerCaracteresEspeciais(numero);
+    Validate.isTrue(numeroTelefone.length() >= 8, "Número deve conter no minímo 8 dígitos");
   }
 }

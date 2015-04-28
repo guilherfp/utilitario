@@ -7,7 +7,7 @@ import java.math.RoundingMode;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import br.com.devsource.utilitario.texto.TextoUtil;
+import br.com.devsource.utilitario.TextoUtils;
 
 /**
  * Ratio (Rácio,Razão, Proporção).</br>
@@ -30,7 +30,7 @@ public final class Ratio extends Number implements Comparable<Ratio>, Serializab
   Ratio(BigDecimal numerador, BigDecimal denominador) {
     Validate.notNull(numerador, "Numerador inválido");
     Validate.notNull(denominador, "Denominador inválido");
-    Validate.isTrue(denominador.equals(BigDecimal.ZERO) == false, "Denominador não pode ser igual a zero");
+    Validate.isTrue(!denominador.equals(BigDecimal.ZERO), "Denominador não pode ser igual a zero");
     this.numerador = numerador;
     this.denominador = denominador;
   }
@@ -140,7 +140,7 @@ public final class Ratio extends Number implements Comparable<Ratio>, Serializab
 
   @Override
   public String toString() {
-    return TextoUtil.formataQuantidade(this);
+    return TextoUtils.formataQuantidade(this);
   }
 
   public boolean isMultiply(Ratio other) {

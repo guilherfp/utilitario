@@ -1,12 +1,13 @@
 package br.com.devsource.utilitario.quantidade.grandezas;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 
 import br.com.devsource.utilitario.quantidade.Quantidade;
-import br.com.devsource.utilitario.ratio.Ratio;
 
+/**
+ * @author Guilherme Pacheco
+ */
 public enum Massa implements Unidade {
   /** miligrama: 10^-3 gramas. */
   MILIGRAMA("miligrama", "mg", -3),
@@ -25,14 +26,6 @@ public enum Massa implements Unidade {
   /** miriagrama: 10^4 gramas. */
   MIRIAGRAMA("miriagrama", "mag", 4);
 
-  private static final Collection<Massa> convencionais = new ArrayList<>(7);
-
-  static {
-    convencionais.add(Massa.QUILOGRAMA);
-    convencionais.add(Massa.GRAMA);
-    convencionais.add(Massa.MILIGRAMA);
-  }
-
   private final String nome;
   private final String simbolo;
   private final double multiplo;
@@ -43,8 +36,8 @@ public enum Massa implements Unidade {
     this.multiplo = multiplo;
   }
 
-  public final Collection<Massa> convencionais() {
-    return Collections.unmodifiableCollection(convencionais);
+  public Collection<Massa> convencionais() {
+    return Arrays.asList(MILIGRAMA, GRAMA, QUILOGRAMA);
   }
 
   @Override
@@ -67,12 +60,8 @@ public enum Massa implements Unidade {
     return GRAMA;
   }
 
-  @Override
   public Quantidade<Massa> de(Number quantida) {
     return Quantidade.de(quantida, this);
   }
 
-  public Quantidade<Massa> um() {
-    return Quantidade.de(Ratio.UM, this);
-  }
 }

@@ -1,7 +1,10 @@
-package br.com.devsource.utilitario.validator;
+package br.com.devsource.utilitario;
 
 import org.apache.commons.lang3.Validate;
 
+/**
+ * @author Guilherme Pacheco
+ */
 public class ValidateSize {
 
   private int minSize = -1;

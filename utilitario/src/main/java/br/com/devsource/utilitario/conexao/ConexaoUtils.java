@@ -3,21 +3,26 @@ package br.com.devsource.utilitario.conexao;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import br.com.devsource.utilitario.excessao.UtilException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Classe utilitária para verificar conexão com a internet.
  * @author Guilherme Freitas
  */
-public final class ConexaoUtil {
+public final class ConexaoUtils {
 
-  private ConexaoUtil() {}
+  private static final Logger LOGGER = LoggerFactory.getLogger(ConexaoUtils.class);
+
+  private ConexaoUtils() {
+    super();
+  }
 
   /**
    * Verifica conexão com a internet.
-   * @throws UtilException se não possuir conexão com a internet
+   * @throws ConexaoException Caso não possua conexão com a internet
    */
-  public static void possuiInternet() throws UtilException {
+  public static void possuiInternet() throws ConexaoException {
     try {
       URL url = new URL("http://www.google.com.br");
       HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -27,10 +32,9 @@ public final class ConexaoUtil {
       connection.setUseCaches(false);
       connection.connect();
       connection.disconnect();
-    } catch (Exception e) {
-      UtilException exception = new UtilException("Erro na conexão com a internet");
-      exception.setDescricao("Verifique a conexão do servidor!");
-      throw exception;
+    } catch (Exception ex) {
+      LOGGER.warn(ex.getMessage(), ex);
+      throw new ConexaoException("Erro na conexão com a internet", ex);
     }
   }
 
@@ -39,7 +43,6 @@ public final class ConexaoUtil {
    * @return <code>true</code> se possuir </br> <code>false</code> se não possui
    */
   public static boolean possuiConexaoInternet() {
-    boolean conectado = false;
     try {
       URL url = new URL("http://www.google.com.br");
       HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -48,11 +51,11 @@ public final class ConexaoUtil {
       connection.setReadTimeout(2000);
       connection.setUseCaches(false);
       connection.connect();
-      conectado = true;
       connection.disconnect();
-    } catch (Exception e) {
-      conectado = false;
+      return true;
+    } catch (Exception ex) {
+      LOGGER.warn(ex.getMessage(), ex);
+      return false;
     }
-    return conectado;
   }
 }

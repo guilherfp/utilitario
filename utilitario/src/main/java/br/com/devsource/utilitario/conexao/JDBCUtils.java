@@ -10,24 +10,35 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Classes fabrica conexões JDBC.
  * @author Guilherme Freitas
  */
-public final class JDBCUtil {
+public final class JDBCUtils {
 
-  private JDBCUtil() {}
+  private static final Logger LOGGER = LoggerFactory.getLogger(JDBCUtils.class);
+
+  private JDBCUtils() {
+    super();
+  }
 
   /**
    * Obtem uma conexão JDBC com a base de dados da aplicação.
    * @param jndiResource Recurso JNDI a ser utilizado.
    * @return Conexão com o banco de dados.
-   * @throws NamingException caso data source JNDI não seja encontrado.
-   * @throws SQLException caso ocorra algum problema de conexão com a base de dados.
+   * @throws ConexaoException Caso data source JNDI não seja encontrado.
+   * @throws ConexaoException caso ocorra algum problema de conexão com a base de dados.
    */
-  public static Connection getConnection(String jndiResource) throws NamingException, SQLException {
-    Context ctx = new InitialContext();
-    return ((DataSource) ctx.lookup(jndiResource)).getConnection();
+  public static Connection getConnection(String jndiResource) throws ConexaoException {
+    try {
+      Context ctx = new InitialContext();
+      return ((DataSource) ctx.lookup(jndiResource)).getConnection();
+    } catch (Exception ex) {
+      throw new ConexaoException(ex);
+    }
   }
 
   /**
@@ -48,6 +59,7 @@ public final class JDBCUtil {
         connection.close();
       }
     } catch (Exception ex) {
+      LOGGER.error(ex.getMessage(), ex);
     }
   }
 
@@ -67,6 +79,7 @@ public final class JDBCUtil {
       pstm.setString(1, database);
       return pstm.execute();
     } catch (Exception ex) {
+      LOGGER.error(ex.getMessage(), ex);
       return false;
     }
   }
@@ -79,15 +92,21 @@ public final class JDBCUtil {
    * @throws SQLException Erro de execução do SQL.
    * @throws NamingException Recurso JNDI não localizado.
    */
-  public static boolean isSchemaExist(String jndiResource, String schema) throws SQLException, NamingException {
+  public static boolean isSchemaExist(String jndiResource, String schema) throws ConexaoException {
     boolean result = false;
-    String sql = String.format("SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '%s'", schema);
-    PreparedStatement pstmt = getConnection(jndiResource).prepareStatement(sql);
-    ResultSet rs = pstmt.executeQuery();
-    if (rs.next()) {
-      result = true;
+    String format = "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '%s'";
+    String sql = String.format(format, schema);
+    PreparedStatement pstmt;
+    try {
+      pstmt = getConnection(jndiResource).prepareStatement(sql);
+      ResultSet rs = pstmt.executeQuery();
+      if (rs.next()) {
+        result = true;
+      }
+      close(null, pstmt, rs);
+    } catch (Exception ex) {
+      throw new ConexaoException(ex);
     }
-    close(null, pstmt, rs);
     return result;
   }
 
@@ -98,7 +117,7 @@ public final class JDBCUtil {
    * @throws SQLException Erro de execução do SQL.
    * @throws NamingException Recurso JNDI não localizado.
    */
-  public static void createSchema(String jndiResource, String schema) throws SQLException, NamingException {
+  public static void createSchema(String jndiResource, String schema) throws Exception {
     String sql = String.format("create database %s", schema);
     PreparedStatement pstmt = getConnection(jndiResource).prepareStatement(sql);
     pstmt.execute();
@@ -113,7 +132,7 @@ public final class JDBCUtil {
    * @throws SQLException Caso tenha erro de SQL.
    * @throws NamingException Caso não possa obter um JNDI.
    */
-  public static void executeSQL(String jndiResource, String sql) throws SQLException, NamingException {
+  public static void executeSQL(String jndiResource, String sql) throws Exception {
     getConnection(jndiResource).prepareStatement(sql).execute();
   }
 }

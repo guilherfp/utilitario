@@ -1,4 +1,4 @@
-package br.com.devsource.utilitario.reflexao;
+package br.com.devsource.utilitario;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -11,16 +11,18 @@ import java.util.List;
  * Classe utilitária com métodos para reflexão de classes Java.
  * @author Guilherme Freitas
  */
-public final class ReflexaoUtil {
+public class ReflexaoUtils {
 
-  private ReflexaoUtil() {}
+  private ReflexaoUtils() {
+    super();
+  }
 
   /**
    * Obtem todos os atributos de uma classe.
    * @param classe que deseja obter os atributos.
    * @return lista com todos os atributos.
    */
-  public final static List<Field> getFields(Class<?> classe) {
+  public static List<Field> getFields(Class<?> classe) {
     List<Field> fields = new LinkedList<>();
     fields.addAll(Arrays.asList(classe.getDeclaredFields()));
     Class<?> superClasse = classe.getSuperclass();
@@ -35,7 +37,7 @@ public final class ReflexaoUtil {
    * @param classe que dejesa obter os métodos.
    * @return Lista com todos os métodos.
    */
-  public final static List<Method> getMethods(Class<?> classe) {
+  public static List<Method> getMethods(Class<?> classe) {
     List<Method> methods = new LinkedList<>();
     methods.addAll(Arrays.asList(classe.getDeclaredMethods()));
     Class<?> superClasse = classe.getSuperclass();
@@ -52,7 +54,7 @@ public final class ReflexaoUtil {
    * @return classe desejada.
    */
   @SuppressWarnings("unchecked")
-  public final static <T> Class<?> getGenericArgumentClass(Class<T> classe, int indice) {
+  public static <T> Class<?> getGenericArgumentClass(Class<T> classe, int indice) {
     return (Class<T>) ((ParameterizedType) classe.getGenericSuperclass()).getActualTypeArguments()[indice];
   }
 }
