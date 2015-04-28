@@ -94,7 +94,7 @@ public final class Quantidade<U extends Unidade> implements Comparable<Quantidad
 
   @SuppressWarnings("unchecked")
   public Quantidade<U> toPadrao() {
-    return to((U) unidade.padraoSI());
+    return to((U) unidade.getDefaultSI());
   }
 
   @Override

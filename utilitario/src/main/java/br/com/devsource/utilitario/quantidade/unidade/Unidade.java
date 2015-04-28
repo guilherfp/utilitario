@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public interface Unidade extends Serializable {
 
-  Unidade padraoSI();
+  Unidade getDefaultSI();
 
   UnidadeValue getValue();
 

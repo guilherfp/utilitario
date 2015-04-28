@@ -2,3 +2,4 @@
 .classpath
 .project
 utilitario-deploy.launch
+.pmd

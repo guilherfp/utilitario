@@ -40,7 +40,7 @@ public enum Massa implements Unidade {
   }
 
   @Override
-  public Massa padraoSI() {
+  public Massa getDefaultSI() {
     return GRAMA;
   }
 }

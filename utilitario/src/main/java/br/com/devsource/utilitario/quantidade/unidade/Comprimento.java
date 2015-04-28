@@ -67,7 +67,7 @@ public enum Comprimento implements Unidade {
   }
 
   @Override
-  public Comprimento padraoSI() {
+  public Comprimento getDefaultSI() {
     return METRO;
   }
 }
