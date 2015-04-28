@@ -1,6 +1,6 @@
 package br.com.devsource.utilitario.quantidade;
 
-import static br.com.devsource.utilitario.test.AssertException.assertThrown;
+import static br.com.devsource.utilitario.test.AssertTestExceptions.assertThrown;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
