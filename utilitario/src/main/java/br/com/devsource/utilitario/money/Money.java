@@ -230,7 +230,7 @@ public final class Money implements Comparable<Money>, Serializable {
 
   /**
    * Realiza a dedução (Desconto) sobre o valor.<br>
-   * <b>Obs.:</b> Não é necessário realizar a divisão por 100, método recebe o valor já em porcentagem.
+   * <b>Obs.:</b> Não é necessário realizar a divisão por 100, ele recebe o valor já em porcentagem.
    * <p>
    * Ex.: Valor = 100,00<br>
    * <b>deduction</b>= 2<br>
@@ -244,7 +244,7 @@ public final class Money implements Comparable<Money>, Serializable {
 
   /**
    * Realiza a dedução (Desconto) sobre o valor.<br>
-   * <b>Obs.:</b> Não é necessário realizar a divisão por 100, método recebe o valor já em porcentagem.
+   * <b>Obs.:</b> Não é necessário realizar a divisão por 100, ele recebe o valor já em porcentagem.
    * <p>
    * Ex.: Valor = 100,00<br>
    * <b>deduction</b>= 2<br>
@@ -258,7 +258,7 @@ public final class Money implements Comparable<Money>, Serializable {
 
   /**
    * Realiza um incrmento (Acréscimo) sobre o valor.<br>
-   * <b>Obs.:</b> Não é necessário realizar a divisão por 100, método recebe o valor já em porcentagem.
+   * <b>Obs.:</b> Não é necessário realizar a divisão por 100, ele recebe o valor já em porcentagem.
    * <p/>
    * Ex.: Valor = 100,00<br>
    * <b>deduction</b>= 2<br>
@@ -272,7 +272,7 @@ public final class Money implements Comparable<Money>, Serializable {
 
   /**
    * Realiza um incrmento (Acréscimo) sobre o valor.<br>
-   * <b>Obs.:</b> Não é necessário realizar a divisão por 100, método recebe o valor já em porcentagem.
+   * <b>Obs.:</b> Não é necessário realizar a divisão por 100, ele recebe o valor já em porcentagem.
    * <p>
    * Ex.: Valor = 100,00<br>
    * <b>deduction</b>= 2<br>
