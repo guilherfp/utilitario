@@ -13,6 +13,7 @@ public class ExpressoesRegulares {
   /** Expressão regular para CEP no formado 99999-999. */
   public static final String CEP = "[0-9]{5}-[0-9]{3}";
   public static final String SOMENTE_NUMERO = "[0-9]+";
+  public static final String EMAIL = "(\\w[-._\\w]*\\w@\\w[-._\\w]*\\w\\.\\w{2,3})";
 
   private ExpressoesRegulares() {
     super();

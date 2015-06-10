@@ -33,6 +33,7 @@ public class TextoUtilsTest {
     String nome = "JoAO DA SiLVA PeREIra";
     assertEquals(null, TextoUtils.formatarNomeProprio(null));
     assertEquals("Joao da Silva Pereira", TextoUtils.formatarNomeProprio(nome));
+    assertEquals("Nome", TextoUtils.formatarNomeProprio("nOme"));
     assertEquals("", TextoUtils.formatarNomeProprio("   "));
     assertEquals("", TextoUtils.formatarNomeProprio(""));
   }

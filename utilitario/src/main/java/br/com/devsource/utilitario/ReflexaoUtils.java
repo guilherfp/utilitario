@@ -53,8 +53,7 @@ public class ReflexaoUtils {
    * @param indice posição da declaração do argumento na classe.
    * @return classe desejada.
    */
-  @SuppressWarnings("unchecked")
-  public static <T> Class<?> getGenericArgumentClass(Class<T> classe, int indice) {
-    return (Class<T>) ((ParameterizedType) classe.getGenericSuperclass()).getActualTypeArguments()[indice];
+  public static Class<?> getGenericArgumentClass(Class<?> classe, int indice) {
+    return (Class<?>) ((ParameterizedType) classe.getGenericSuperclass()).getActualTypeArguments()[indice];
   }
 }
