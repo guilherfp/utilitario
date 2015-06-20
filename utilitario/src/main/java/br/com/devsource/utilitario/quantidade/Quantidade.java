@@ -39,11 +39,8 @@ public final class Quantidade<U extends Unidade> implements Comparable<Quantidad
 
   public Quantidade<U> add(Quantidade<U> other) {
     checarUnidade(other);
-    Ratio multiplo = Ratio.valueOf(Math.pow(10, unidade.getValue().getMultiplo()));
-    Ratio a = quantia.mutiply(multiplo);
-    Ratio b =
-        other.quantia.mutiply(Ratio.valueOf(Math.pow(10, other.unidade.getValue().getMultiplo())));
-    return new Quantidade<U>(a.add(b).divide(multiplo), unidade);
+    Ratio result = padrao().add(other.padrao());
+    return new Quantidade<U>(result.divide(base10(unidade)), unidade);
   }
 
   private void checarUnidade(Quantidade<U> other) {
@@ -54,27 +51,26 @@ public final class Quantidade<U extends Unidade> implements Comparable<Quantidad
 
   public Quantidade<U> minus(Quantidade<U> other) {
     checarUnidade(other);
-    Ratio multiplo = Ratio.valueOf(Math.pow(10, unidade.getValue().getMultiplo()));
-    Ratio a = quantia.mutiply(multiplo);
-    Ratio b =
-        other.quantia.mutiply(Ratio.valueOf(Math.pow(10, other.unidade.getValue().getMultiplo())));
-    return new Quantidade<U>(a.minus(b).divide(multiplo), unidade);
+    Ratio result = padrao().minus(other.padrao());
+    return new Quantidade<U>(result.divide(base10(unidade)), unidade);
   }
 
   public Quantidade<U> multiply(Quantidade<U> other) {
     checarUnidade(other);
-    Ratio a = quantia.mutiply(Ratio.valueOf(Math.pow(10, unidade.getValue().getMultiplo())));
-    Ratio b =
-        other.quantia.mutiply(Ratio.valueOf(Math.pow(10, other.unidade.getValue().getMultiplo())));
-    return new Quantidade<U>(a.mutiply(b), unidade);
+    return new Quantidade<U>(padrao().mutiply(other.padrao()), unidade);
   }
 
   public Quantidade<U> divide(Quantidade<U> other) {
     checarUnidade(other);
-    Ratio a = quantia.mutiply(Ratio.valueOf(Math.pow(10, unidade.getValue().getMultiplo())));
-    Ratio b =
-        other.quantia.mutiply(Ratio.valueOf(Math.pow(10, other.unidade.getValue().getMultiplo())));
-    return new Quantidade<U>(a.divide(b), unidade);
+    return new Quantidade<U>(padrao().divide(other.padrao()), unidade);
+  }
+
+  private Ratio padrao() {
+    return quantia.mutiply(base10(unidade));
+  }
+
+  private Ratio base10(U unidade) {
+    return Ratio.valueOf(Math.pow(10, unidade.getMultiplo()));
   }
 
   public static <U extends Unidade> Quantidade<U> de(Ratio quantia, U unidade) {
@@ -86,9 +82,8 @@ public final class Quantidade<U extends Unidade> implements Comparable<Quantidad
   }
 
   public Quantidade<U> to(U unidadeDesejada) {
-    Ratio quantidaDesejada =
-        Ratio.valueOf(Math.pow(10, unidade.getValue().getMultiplo()
-            - unidadeDesejada.getValue().getMultiplo()));
+    double diferenca = unidade.getMultiplo() - unidadeDesejada.getMultiplo();
+    Ratio quantidaDesejada = Ratio.valueOf(Math.pow(10, diferenca));
     return new Quantidade<U>(quantia.mutiply(quantidaDesejada), unidadeDesejada);
   }
 
@@ -115,9 +110,8 @@ public final class Quantidade<U extends Unidade> implements Comparable<Quantidad
       return false;
     }
     Quantidade<?> other = (Quantidade<?>) obj;
-    Ratio a = quantia.mutiply(Ratio.valueOf(Math.pow(10, unidade.getValue().getMultiplo())));
-    Ratio b =
-        other.quantia.mutiply(Ratio.valueOf(Math.pow(10, other.unidade.getValue().getMultiplo())));
+    Ratio a = quantia.mutiply(Ratio.valueOf(Math.pow(10, unidade.getMultiplo())));
+    Ratio b = other.quantia.mutiply(Ratio.valueOf(Math.pow(10, other.unidade.getMultiplo())));
     return a.equals(b);
   }
 

@@ -1,8 +1,9 @@
 package br.com.devsource.utilitario;
 
+import static org.junit.Assert.assertEquals;
+
 import java.math.BigDecimal;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -17,8 +18,8 @@ public class ValoresUtilsTest {
   @Test
   public void testeMascaraMonetaria() {
     BigDecimal valor = BigDecimal.valueOf(1520.2);
-    Assert.assertEquals("R$ 1.520,20", ValoresUtils.mascaraMonetaria(valor, ValoresUtils.REAL));
-    Assert.assertEquals("$ 1,520.20", ValoresUtils.mascaraMonetaria(valor, ValoresUtils.DOLAR));
-    Assert.assertEquals("€ 1.520,20", ValoresUtils.mascaraMonetaria(valor, ValoresUtils.EURO));
+    assertEquals("R$ 1.520,20", ValoresUtils.mascaraMonetaria(valor, ValoresUtils.REAL));
+    assertEquals("$ 1,520.20", ValoresUtils.mascaraMonetaria(valor, ValoresUtils.DOLAR));
+    assertEquals("€ 1.520,20", ValoresUtils.mascaraMonetaria(valor, ValoresUtils.EURO));
   }
 }

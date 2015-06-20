@@ -4,7 +4,7 @@ import java.util.Currency;
 
 /**
  * Exceção de operação com tipos de moedas diferentes.
- * @author Guilherme Freitas em 30/04/2014.
+ * @author Guilherme Pacheco
  */
 public class CurrencyMissmatchException extends RuntimeException {
   private static final long serialVersionUID = 1L;

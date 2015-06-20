@@ -16,7 +16,7 @@ import br.com.devsource.utilitario.ratio.Ratio;
 
 /**
  * Classe para tratamento de valores monetários.
- * @author Guilherme Freitas em 23/04/2014.
+ * @author Guilherme Pacheco
  */
 public final class Money implements Comparable<Money>, Serializable {
   private static final long serialVersionUID = 1L;

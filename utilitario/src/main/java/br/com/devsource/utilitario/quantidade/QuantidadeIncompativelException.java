@@ -2,6 +2,9 @@ package br.com.devsource.utilitario.quantidade;
 
 import br.com.devsource.utilitario.quantidade.unidade.Unidade;
 
+/**
+ * @author Guilherme Pacheco
+ */
 public class QuantidadeIncompativelException extends IllegalArgumentException {
   private static final long serialVersionUID = 1L;
 
