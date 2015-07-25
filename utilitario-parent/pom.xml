@@ -15,9 +15,8 @@
   </organization>
 
   <modules>
-    <module>../utilitario</module>
-    <module>../utilitario-user-types</module>
-    <module>../utilitario-test</module>
+    <module>utilitario</module>
+    <module>utilitario-user-types</module>
   </modules>
 
   <properties>
