@@ -12,6 +12,7 @@ import br.com.devsource.utilitario.TextoUtils;
 /**
  * Ratio (Rácio,Razão, Proporção).</br>
  * Permitir manipular frações minimizando as operações de divisão.
+ * 
  * @author Guilherme Freitas.
  */
 public final class Ratio extends Number implements Comparable<Ratio>, Serializable {
@@ -135,7 +136,7 @@ public final class Ratio extends Number implements Comparable<Ratio>, Serializab
     if (obj == null) {
       return false;
     }
-    if ((obj == null) || !(obj instanceof Number)) {
+    if (obj == null || !(obj instanceof Number)) {
       return false;
     }
     Number other = (Number) obj;

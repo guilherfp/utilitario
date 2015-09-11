@@ -7,6 +7,7 @@ import br.com.devsource.utilitario.ratio.Ratio;
 
 /**
  * Classe de validação e valor.
+ * 
  * @author Guilherme Freitas em 28/05/2014.
  */
 public class ValidateUtils {
@@ -22,6 +23,7 @@ public class ValidateUtils {
 
   /**
    * Valida de o valor monetário é maior que um centávo.
+   * 
    * @param money Valor a ser validado.
    * @param message Formato da mensagem de erro.
    * @param values Valor a mensagem.
@@ -35,6 +37,7 @@ public class ValidateUtils {
 
   /**
    * Valida de o valor monetário é maior que um centávo.
+   * 
    * @param excepted Valor a ser validado.
    * @throws IllegalArgumentException Se a expressão for falsa.
    * @author Guilherme Freitas em 28/05/2014.
@@ -63,8 +66,8 @@ public class ValidateUtils {
     isMaiorDoQue(excepted, actual, DEFAULT_MAIOR_DO_QUE, excepted, actual);
   }
 
-  public static void
-      isMaiorOuIgualA(Ratio excepted, Ratio actual, String message, Object... values) {
+  public static void isMaiorOuIgualA(Ratio excepted, Ratio actual, String message,
+      Object... values) {
     Validate.notNull(excepted);
     Validate.notNull(actual);
     Validate.isTrue(excepted.maiorOuIqualA(actual), message, values);
@@ -74,8 +77,8 @@ public class ValidateUtils {
     isMaiorOuIgualA(excepted, actual, DEFAULT_MAIOR_OU_IGUAL_A, excepted, actual);
   }
 
-  public static void
-      isMaiorOuIgualA(Money excepted, Money actual, String message, Object... values) {
+  public static void isMaiorOuIgualA(Money excepted, Money actual, String message,
+      Object... values) {
     Validate.notNull(excepted);
     Validate.notNull(actual);
     Validate.isTrue(excepted.maiorOuIgualA(actual), message, values);

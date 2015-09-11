@@ -4,6 +4,7 @@ import java.util.regex.Pattern;
 
 /**
  * Classe com conjunto de expressões regulares e validadores.
+ * 
  * @author Guilherme Freitas
  */
 public class ExpressoesRegulares {
@@ -21,6 +22,7 @@ public class ExpressoesRegulares {
 
   /**
    * Método valida expressões regulares.
+   * 
    * @param string {@link String} a ser validada.
    * @param expressao Expressão de validação.
    * @return <code>true</code> caso expressão seja atendida. <code>false</code> caso contrário.

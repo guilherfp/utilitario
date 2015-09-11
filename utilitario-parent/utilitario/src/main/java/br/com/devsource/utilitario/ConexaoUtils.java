@@ -3,15 +3,18 @@ package br.com.devsource.utilitario;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * Classe utilitária para verificar conexão com a internet.
+ * 
  * @author Guilherme Freitas
  */
 public final class ConexaoUtils {
 
+  private static final String URL_GOOGLE = "http://www.google.com.br";
   private static final Logger LOGGER = LoggerFactory.getLogger(ConexaoUtils.class);
 
   private ConexaoUtils() {
@@ -19,32 +22,13 @@ public final class ConexaoUtils {
   }
 
   /**
-   * Verifica conexão com a internet.
-   * @throws ConexaoException Caso não possua conexão com a internet
-   */
-  public static void possuiInternet() throws ConexaoException {
-    try {
-      URL url = new URL("http://www.google.com.br");
-      HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-      connection.setDefaultUseCaches(false);
-      connection.setConnectTimeout(2000);
-      connection.setReadTimeout(2000);
-      connection.setUseCaches(false);
-      connection.connect();
-      connection.disconnect();
-    } catch (Exception ex) {
-      LOGGER.warn(ex.getMessage(), ex);
-      throw new ConexaoException("Erro na conexão com a internet", ex);
-    }
-  }
-
-  /**
    * Verifica se há conexão com a internet.
-   * @return <code>true</code> se possuir </br> <code>false</code> se não possui
+   * 
+   * @return <code>true</code> se possuir, <code>false</code> se não possui
    */
-  public static boolean possuiConexaoInternet() {
+  public static boolean isPossuiConexaoInternet() {
     try {
-      URL url = new URL("http://www.google.com.br");
+      URL url = new URL(URL_GOOGLE);
       HttpURLConnection connection = (HttpURLConnection) url.openConnection();
       connection.setDefaultUseCaches(false);
       connection.setConnectTimeout(2000);
@@ -58,4 +42,19 @@ public final class ConexaoUtils {
       return false;
     }
   }
+
+  /**
+   * Verifica conexão com a internet.
+   * 
+   * @throws ConexaoException Caso não possua conexão com a internet
+   */
+  public static void isPossuiInternet() throws ConexaoException {
+    try {
+      Validate.isTrue(isPossuiConexaoInternet());
+    } catch (Exception ex) {
+      LOGGER.warn(ex.getMessage(), ex);
+      throw new ConexaoException("Erro na conexão com a internet", ex);
+    }
+  }
+
 }

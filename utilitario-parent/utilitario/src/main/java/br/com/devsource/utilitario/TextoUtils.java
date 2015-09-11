@@ -14,6 +14,7 @@ import br.com.devsource.utilitario.ratio.Ratio;
 
 /**
  * Classe utilitária para tratamento de texto.
+ * 
  * @author Guilherme Freitas
  */
 public final class TextoUtils {
@@ -22,7 +23,7 @@ public final class TextoUtils {
   private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#,##0");
 
   static {
-    PREPOSICOES = Arrays.asList(new String[] { "de", "da", "do", "e" });
+    PREPOSICOES = Arrays.asList(new String[] {"de", "da", "do", "e"});
   }
 
   private TextoUtils() {
@@ -31,6 +32,7 @@ public final class TextoUtils {
 
   /**
    * Remove dígitos da string.
+   * 
    * @param string a ser formatada.
    * @return string formatada.
    */
@@ -40,6 +42,7 @@ public final class TextoUtils {
 
   /**
    * Remove caracteres especiais.
+   * 
    * @param string {@link String} a ser tratada.
    * @return {@link String} tratada.
    */
@@ -78,6 +81,7 @@ public final class TextoUtils {
    * <pre>
    * FUlano peixoto DA Silva -> Fulano Peixoto da Silva
    * </pre>
+   * 
    * @param nome a ser tratada.
    * @return string formatada.
    */
@@ -92,7 +96,7 @@ public final class TextoUtils {
         array[i] = String.valueOf(array[i]).toUpperCase().charAt(0);
       } else if (array[i] == ' ') {
         boolean isPreposicao = false;
-        if ((array.length - i) > 2) {
+        if (array.length - i > 2) {
           isPreposicao = PREPOSICOES.contains(String.format("%s%s", array[i + 1], array[i + 2]));
         }
         if (!isPreposicao) {
@@ -105,6 +109,7 @@ public final class TextoUtils {
 
   /**
    * Método remove excessos de espaços em branco.
+   * 
    * @param string a ser tratada.
    * @return string formatada.
    */
@@ -119,17 +124,19 @@ public final class TextoUtils {
    * true = Sim.
    * <p>
    * false = Não.
+   * 
    * @param valor <code>true</code> = Sim, <code>false</code> = Não.
    * @return {@link String} correspondente ao valor.
    */
   public static String getSimOuNao(boolean valor) {
-    return (valor) ? "Sim" : "Não";
+    return valor ? "Sim" : "Não";
   }
 
   /**
    * Obtem a saudação de acordo com o horário.
-   * @param data na qual deseja obtem a saudação. Se a <b>data</b> for nula será utilizada a data atual do
-   *          sistema.
+   * 
+   * @param data na qual deseja obtem a saudação. Se a <b>data</b> for nula será utilizada a data
+   *          atual do sistema.
    * @return String de saudação<br/>
    *         Ex.:<br/>
    *         Data com hora igual à 11:00hs = "Bom dia"<br/>
@@ -151,6 +158,7 @@ public final class TextoUtils {
 
   /**
    * Converte uma String para o Formato camelCase.
+   * 
    * @param string valor a ser convertido.
    * @return valor convertido.
    */
@@ -165,6 +173,7 @@ public final class TextoUtils {
   /**
    * Realizar a formatação do número.<br/>
    * Ex.: 10000 -> 10.000
+   * 
    * @param number Número a ser formatado.
    * @return número formatado.
    */
@@ -175,6 +184,7 @@ public final class TextoUtils {
   /**
    * Realizar a formatação do número.<br/>
    * Ex.: 10000 -> 10.000
+   * 
    * @param number Número a ser formatado.
    * @return número formatado.
    */
@@ -183,8 +193,10 @@ public final class TextoUtils {
   }
 
   /**
-   * Obtem nome próprio. </br>Ex.:<br>
+   * Obtem nome próprio. </br>
+   * Ex.:<br>
    * João Pereira da Silva Batista -> João Batista
+   * 
    * @param nome que deseja ser tratado.
    * @return nome tratado.
    */
@@ -205,6 +217,7 @@ public final class TextoUtils {
 
   /**
    * Formata valor {@link Ratio} para melhor representação.
+   * 
    * @param ratio Valor a ser formatado.
    * @param maxDecimalDigits Quantidade máxima de casas decimais desejada.
    * @return Valor formatado.
@@ -227,6 +240,7 @@ public final class TextoUtils {
 
   /**
    * Formata valor {@link Ratio} para melhor representação.
+   * 
    * @param ratio Valor a ser formatado.
    * @return Valor formatado.
    */

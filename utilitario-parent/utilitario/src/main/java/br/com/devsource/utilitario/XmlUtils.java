@@ -15,10 +15,12 @@ import javax.xml.transform.stream.StreamResult;
 
 /**
  * Classe utilitária para realizar conversões XML.
+ * 
  * @author Guilherme Freitas
  * @param <T> Tipo do objeto a ser trabalhado.
  */
 public final class XmlUtils<T> {
+
   private final Class<T> type;
   private final JAXBContext context;
   private final Marshaller marshaller;
@@ -26,6 +28,7 @@ public final class XmlUtils<T> {
 
   /**
    * Construtor carrega o tipo do objeto a ser convertido em XML.
+   * 
    * @param type Classe do objeto a ser convertido.
    * @throws JAXBException {@link JAXBContext}
    */
@@ -74,7 +77,7 @@ public final class XmlUtils<T> {
     return (T) jaxbContext.createUnmarshaller().unmarshal(new StringReader(xmlString));
   }
 
-  @SuppressWarnings({ "rawtypes", "unchecked" })
+  @SuppressWarnings({"rawtypes", "unchecked"})
   public static String toXml(Object object) throws JAXBException {
     return new XmlUtils(object.getClass()).marshal(object);
   }
