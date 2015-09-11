@@ -16,12 +16,12 @@ public class QuantidadeComprimentoTest {
     Quantidade.de(null, Comprimento.METRO);
   }
 
-  @Test
+  @Test(expected = NullPointerException.class)
   public void testQuantidade_UnidadeNula() throws Exception {
     Quantidade.de(1, null);
   }
 
-  @Test
+  @Test(expected = IllegalArgumentException.class)
   public void testQuantidade_QuantiaNegativa() throws Exception {
     Quantidade.de(-0.0001, Comprimento.METRO);
   }
