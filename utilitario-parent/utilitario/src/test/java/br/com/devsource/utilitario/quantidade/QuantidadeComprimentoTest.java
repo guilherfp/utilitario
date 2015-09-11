@@ -1,7 +1,6 @@
 package br.com.devsource.utilitario.quantidade;
 
-import static br.com.devsource.utilitario.test.AssertTestExceptions.assertThrown;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
@@ -12,11 +11,19 @@ import br.com.devsource.utilitario.quantidade.unidade.Comprimento;
  */
 public class QuantidadeComprimentoTest {
 
+  @Test(expected = NullPointerException.class)
+  public void testQuantidade_QuantiaNula() throws Exception {
+    Quantidade.de(null, Comprimento.METRO);
+  }
+
   @Test
-  public void testDe_numeroInvalido() throws Exception {
-    assertThrown(NullPointerException.class, () -> Quantidade.de(null, Comprimento.METRO));
-    assertThrown(NullPointerException.class, () -> Quantidade.de(1, null));
-    assertThrown(IllegalArgumentException.class, () -> Quantidade.de(-0.0001, Comprimento.METRO));
+  public void testQuantidade_UnidadeNula() throws Exception {
+    Quantidade.de(1, null);
+  }
+
+  @Test
+  public void testQuantidade_QuantiaNegativa() throws Exception {
+    Quantidade.de(-0.0001, Comprimento.METRO);
   }
 
   @Test
@@ -34,8 +41,8 @@ public class QuantidadeComprimentoTest {
 
     Quantidade<Comprimento> dezDecametros = Quantidade.de(100, Comprimento.DECAMETRO);
     assertEquals(Quantidade.de(1, Comprimento.QUILOMETRO), dezDecametros);
-    assertEquals(Quantidade.de(1_000_000, Comprimento.MILIMETRO), milMetros
-      .to(Comprimento.MILIMETRO));
+    assertEquals(Quantidade.de(1_000_000, Comprimento.MILIMETRO),
+        milMetros.to(Comprimento.MILIMETRO));
   }
 
   @Test

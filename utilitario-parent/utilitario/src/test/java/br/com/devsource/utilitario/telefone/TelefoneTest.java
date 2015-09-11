@@ -1,21 +1,37 @@
 package br.com.devsource.utilitario.telefone;
 
-import static br.com.devsource.utilitario.test.AssertTestExceptions.assertThrown;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/**
+ * @author Guilherme Pacheco
+ */
 public class TelefoneTest {
 
-  @Test
-  public void testConstructor() throws Exception {
-    assertThrown(NullPointerException.class, () -> new Telefone(null, null));
-    assertThrown(IllegalArgumentException.class, () -> new Telefone("", null));
-    assertThrown(IllegalArgumentException.class, () -> new Telefone("", ""));
-    assertThrown(IllegalArgumentException.class, () -> new Telefone("", "12341234"));
-    assertThrown(IllegalArgumentException.class, () -> new Telefone("62", ""));
-    assertThrown(IllegalArgumentException.class, () -> new Telefone("62", "1234567"));
-    assertThrown(IllegalArgumentException.class, () -> new Telefone("62", "1234-567"));
+  @Test(expected = NullPointerException.class)
+  public void testTelefone_DDDNulo() throws Exception {
+    new Telefone(null, "234234324");
+  }
+
+  @Test(expected = NullPointerException.class)
+  public void testTelefone_NumeroNulo() throws Exception {
+    new Telefone("62", null);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testTelefone_DDDVazio() throws Exception {
+    new Telefone("", "12345678");
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testTelefone_NumeroVazio() throws Exception {
+    new Telefone("52", "");
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testTelefone_NumeroPequeno() throws Exception {
+    new Telefone("52", "123456");
   }
 
   @Test

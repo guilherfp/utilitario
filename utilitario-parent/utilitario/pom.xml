@@ -45,12 +45,6 @@
       <version>${caelum.stella.core.version}</version>
     </dependency>
     <dependency>
-      <groupId>br.com.devsource.test</groupId>
-      <artifactId>utilitario-test</artifactId>
-      <version>1.2.0</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
     </dependency>
