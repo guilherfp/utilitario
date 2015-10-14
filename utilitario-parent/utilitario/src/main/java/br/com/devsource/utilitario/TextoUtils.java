@@ -14,7 +14,6 @@ import br.com.devsource.utilitario.ratio.Ratio;
 
 /**
  * Classe utilitária para tratamento de texto.
- * 
  * @author Guilherme Freitas
  */
 public final class TextoUtils {
@@ -32,7 +31,6 @@ public final class TextoUtils {
 
   /**
    * Remove dígitos da string.
-   * 
    * @param string a ser formatada.
    * @return string formatada.
    */
@@ -42,7 +40,6 @@ public final class TextoUtils {
 
   /**
    * Remove caracteres especiais.
-   * 
    * @param string {@link String} a ser tratada.
    * @return {@link String} tratada.
    */
@@ -81,7 +78,7 @@ public final class TextoUtils {
    * <pre>
    * FUlano peixoto DA Silva -> Fulano Peixoto da Silva
    * </pre>
-   * 
+   *
    * @param nome a ser tratada.
    * @return string formatada.
    */
@@ -90,7 +87,7 @@ public final class TextoUtils {
       return null;
     }
     String nomeSemEspacos = removerEspacos(nome.toLowerCase());
-    final char[] array = removerEspacos(nomeSemEspacos).toCharArray();
+    char[] array = removerEspacos(nomeSemEspacos).toCharArray();
     for (int i = 0; i < array.length; i++) {
       if (i == 0) {
         array[i] = String.valueOf(array[i]).toUpperCase().charAt(0);
@@ -109,7 +106,6 @@ public final class TextoUtils {
 
   /**
    * Método remove excessos de espaços em branco.
-   * 
    * @param string a ser tratada.
    * @return string formatada.
    */
@@ -124,7 +120,6 @@ public final class TextoUtils {
    * true = Sim.
    * <p>
    * false = Não.
-   * 
    * @param valor <code>true</code> = Sim, <code>false</code> = Não.
    * @return {@link String} correspondente ao valor.
    */
@@ -134,7 +129,6 @@ public final class TextoUtils {
 
   /**
    * Obtem a saudação de acordo com o horário.
-   * 
    * @param data na qual deseja obtem a saudação. Se a <b>data</b> for nula será utilizada a data
    *          atual do sistema.
    * @return String de saudação<br/>
@@ -158,7 +152,6 @@ public final class TextoUtils {
 
   /**
    * Converte uma String para o Formato camelCase.
-   * 
    * @param string valor a ser convertido.
    * @return valor convertido.
    */
@@ -173,7 +166,6 @@ public final class TextoUtils {
   /**
    * Realizar a formatação do número.<br/>
    * Ex.: 10000 -> 10.000
-   * 
    * @param number Número a ser formatado.
    * @return número formatado.
    */
@@ -184,7 +176,6 @@ public final class TextoUtils {
   /**
    * Realizar a formatação do número.<br/>
    * Ex.: 10000 -> 10.000
-   * 
    * @param number Número a ser formatado.
    * @return número formatado.
    */
@@ -196,7 +187,6 @@ public final class TextoUtils {
    * Obtem nome próprio. </br>
    * Ex.:<br>
    * João Pereira da Silva Batista -> João Batista
-   * 
    * @param nome que deseja ser tratado.
    * @return nome tratado.
    */
@@ -217,7 +207,6 @@ public final class TextoUtils {
 
   /**
    * Formata valor {@link Ratio} para melhor representação.
-   * 
    * @param ratio Valor a ser formatado.
    * @param maxDecimalDigits Quantidade máxima de casas decimais desejada.
    * @return Valor formatado.
@@ -228,8 +217,8 @@ public final class TextoUtils {
       digits = maxDecimalDigits;
     }
     BigDecimal value = ratio.asNumber();
-    final int decimal = (int) value.doubleValue();
-    final double fractional = value.doubleValue() - decimal;
+    int decimal = (int) value.doubleValue();
+    double fractional = value.doubleValue() - decimal;
     if (Double.compare(fractional, 0.0) == 0) {
       return String.valueOf(value.intValue());
     } else {
@@ -240,7 +229,6 @@ public final class TextoUtils {
 
   /**
    * Formata valor {@link Ratio} para melhor representação.
-   * 
    * @param ratio Valor a ser formatado.
    * @return Valor formatado.
    */

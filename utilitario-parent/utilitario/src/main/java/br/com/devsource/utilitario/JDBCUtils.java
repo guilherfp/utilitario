@@ -15,7 +15,6 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Classes fabrica conexões JDBC.
- * 
  * @author Guilherme Freitas
  */
 public final class JDBCUtils {
@@ -28,7 +27,6 @@ public final class JDBCUtils {
 
   /**
    * Obtem uma conexão JDBC com a base de dados da aplicação.
-   * 
    * @param jndiResource Recurso JNDI a ser utilizado.
    * @return Conexão com o banco de dados.
    * @throws ConexaoException Caso data source JNDI não seja encontrado.
@@ -45,7 +43,6 @@ public final class JDBCUtils {
 
   /**
    * Fecha conexões JDBC.
-   * 
    * @param connection conexão com banco.
    * @param pstm {@link PreparedStatement} utilizado na conexão.
    * @param rs {@link ResultSet} utilizado na conexão.
@@ -68,7 +65,6 @@ public final class JDBCUtils {
 
   /**
    * Cria a base de dados da aplicação.
-   * 
    * @param jndiResource Recurso JNDI a ser utilizado.
    * @param database nome do banco de dados.
    * @return <code>true</code> caso a base seja criada com sucesso. <code>false</code> caso ocorra
@@ -91,7 +87,6 @@ public final class JDBCUtils {
 
   /**
    * Método verifica se o schema informado já existe.
-   * 
    * @param jndiResource Recurso JNDI a ser utilizado.
    * @param schema Schema a ser verificado.
    * @return <code>true</code> caso o esquema já exista e <code>false</code> caso contrário.
@@ -118,7 +113,6 @@ public final class JDBCUtils {
 
   /**
    * Cria um schema.
-   * 
    * @param jndiResource Recurso JNDI a ser utilizado.
    * @param schema Schema a ser criado.
    * @throws ConexaoException Erro de execução do SQL.
@@ -137,7 +131,6 @@ public final class JDBCUtils {
 
   /**
    * Executa um comando SQL.
-   * 
    * @param jndiResource Nome do Recurso JNDI utilizado para obter a conexão.
    * @@param jndiResource Recurso JNDI a ser utilizado.
    * @param sql SQL a ser executada.

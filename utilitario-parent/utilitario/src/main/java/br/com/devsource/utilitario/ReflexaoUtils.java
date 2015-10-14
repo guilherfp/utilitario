@@ -9,7 +9,6 @@ import java.util.List;
 
 /**
  * Classe utilitária com métodos para reflexão de classes Java.
- * 
  * @author Guilherme Freitas
  */
 public class ReflexaoUtils {
@@ -20,7 +19,6 @@ public class ReflexaoUtils {
 
   /**
    * Obtem todos os atributos de uma classe.
-   * 
    * @param classe que deseja obter os atributos.
    * @return lista com todos os atributos.
    */
@@ -36,7 +34,6 @@ public class ReflexaoUtils {
 
   /**
    * Obtem todos os métodos de uma classe.
-   * 
    * @param classe que dejesa obter os métodos.
    * @return Lista com todos os métodos.
    */
@@ -52,7 +49,6 @@ public class ReflexaoUtils {
 
   /**
    * Método obtem classes passadas como argumentos para classes genéricas.
-   * 
    * @param classe genérica que deseja obter os argumentos.
    * @param indice posição da declaração do argumento na classe.
    * @return classe desejada.

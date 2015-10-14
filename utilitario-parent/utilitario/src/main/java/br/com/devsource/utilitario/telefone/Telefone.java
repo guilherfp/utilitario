@@ -8,7 +8,6 @@ import br.com.devsource.utilitario.TextoUtils;
 
 /**
  * Classe representa um número telefônico.
- * 
  * @author Guilherme Freitas
  */
 public class Telefone implements Comparable<Telefone> {
@@ -74,7 +73,8 @@ public class Telefone implements Comparable<Telefone> {
       return false;
     }
     Telefone other = (Telefone) obj;
-    return new EqualsBuilder().append(ddd, other.ddd).append(numero, other.numero).isEquals();
+    return new EqualsBuilder().append(ddd, other.ddd)
+        .append(numero, other.numero).isEquals();
   }
 
   private static void validarNumero(String numero) {

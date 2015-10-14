@@ -7,7 +7,6 @@ import java.util.Locale;
 
 /**
  * Classe utilitária para tratamento de valores monetários.
- * 
  * @author Guilherme Freitas
  */
 public final class ValoresUtils {
@@ -35,7 +34,6 @@ public final class ValoresUtils {
 
   /**
    * Mascara texto com formatação monetária.
-   * 
    * @param valor Valor a ser mascarado.
    * @param moeda Padrão monetário a ser usado.
    * @return Valor mascarado de acordo com o padrão especificado.
@@ -46,7 +44,6 @@ public final class ValoresUtils {
 
   /**
    * Mascara texto com formatação monetária.
-   * 
    * @param valor Valor a ser mascarado.
    * @param moeda Padrão monetário a ser usado.
    * @return Valor mascarado de acordo com o padrão especificado.

@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Classe utilitária para verificar conexão com a internet.
- * 
  * @author Guilherme Freitas
  */
 public final class ConexaoUtils {
@@ -23,7 +22,6 @@ public final class ConexaoUtils {
 
   /**
    * Verifica se há conexão com a internet.
-   * 
    * @return <code>true</code> se possuir, <code>false</code> se não possui
    */
   public static boolean isPossuiConexaoInternet() {
@@ -45,7 +43,6 @@ public final class ConexaoUtils {
 
   /**
    * Verifica conexão com a internet.
-   * 
    * @throws ConexaoException Caso não possua conexão com a internet
    */
   public static void isPossuiInternet() throws ConexaoException {

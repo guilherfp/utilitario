@@ -11,7 +11,8 @@ import br.com.devsource.utilitario.ratio.Ratio;
  * Patern quantity.
  * @author Guilherme Freitas
  */
-public final class Quantidade<U extends Unidade> implements Comparable<Quantidade<U>>, Serializable {
+public final class Quantidade<U extends Unidade>
+implements Comparable<Quantidade<U>>, Serializable {
   private static final long serialVersionUID = 1L;
 
   private Ratio quantia;
@@ -96,8 +97,8 @@ public final class Quantidade<U extends Unidade> implements Comparable<Quantidad
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = (prime * result) + ((quantia == null) ? 0 : quantia.hashCode());
-    result = (prime * result) + ((unidade == null) ? 0 : unidade.hashCode());
+    result = prime * result + (quantia == null ? 0 : quantia.hashCode());
+    result = prime * result + (unidade == null ? 0 : unidade.hashCode());
     return result;
   }
 
@@ -106,7 +107,7 @@ public final class Quantidade<U extends Unidade> implements Comparable<Quantidad
     if (this == obj) {
       return true;
     }
-    if ((obj == null) || !(obj instanceof Quantidade<?>)) {
+    if (obj == null || !(obj instanceof Quantidade<?>)) {
       return false;
     }
     Quantidade<?> other = (Quantidade<?>) obj;
@@ -122,7 +123,7 @@ public final class Quantidade<U extends Unidade> implements Comparable<Quantidad
 
   @Override
   public String toString() {
-    return String.format("%s %s", quantia.asNumber(), unidade.getValue().getSimbolo()).replace(".",
-      ",");
+    String simbolo = unidade.getValue().getSimbolo();
+    return String.format("%s %s", quantia.asNumber(), simbolo).replace(".", ",");
   }
 }

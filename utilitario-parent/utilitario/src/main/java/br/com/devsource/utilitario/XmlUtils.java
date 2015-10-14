@@ -15,7 +15,6 @@ import javax.xml.transform.stream.StreamResult;
 
 /**
  * Classe utilitária para realizar conversões XML.
- * 
  * @author Guilherme Freitas
  * @param <T> Tipo do objeto a ser trabalhado.
  */
@@ -28,7 +27,6 @@ public final class XmlUtils<T> {
 
   /**
    * Construtor carrega o tipo do objeto a ser convertido em XML.
-   * 
    * @param type Classe do objeto a ser convertido.
    * @throws JAXBException {@link JAXBContext}
    */

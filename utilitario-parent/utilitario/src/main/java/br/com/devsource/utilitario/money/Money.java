@@ -60,7 +60,7 @@ public final class Money implements Comparable<Money>, Serializable {
   }
 
   private RoundingMode getArredondamento() {
-    return (arredondamento != null) ? arredondamento : ARREDONDAMENTO;
+    return arredondamento != null ? arredondamento : ARREDONDAMENTO;
   }
 
   public void arredondamento(RoundingMode arredondamento) {
@@ -88,7 +88,8 @@ public final class Money implements Comparable<Money>, Serializable {
   /**
    * Compara se o valor é maior do que o informado.
    * @param other Valor a ser comparado.
-   * @return <code>true</code> caso o valor seja maior que o informado e <code>false</code> caso contrário.
+   * @return <code>true</code> caso o valor seja maior que o informado e <code>false</code> caso
+   *         contrário.
    */
   public boolean maiorQue(Money other) {
     return compareTo(other) > 0;
@@ -97,7 +98,8 @@ public final class Money implements Comparable<Money>, Serializable {
   /**
    * Verifica se o valor é maior ou igual ao valor informado.
    * @param other Valor a ser comparado.
-   * @return <code>true</code> caso valor seja maior que o informado, e <code>false</code> caso contrário.
+   * @return <code>true</code> caso valor seja maior que o informado, e <code>false</code> caso
+   *         contrário.
    * @author Guilherme Freitas em 28/05/2014.
    */
   public boolean maiorOuIgualA(Money other) {
@@ -137,7 +139,8 @@ public final class Money implements Comparable<Money>, Serializable {
   /**
    * Compara se o valor é menor do que o informado.
    * @param other Valor a ser comparado.
-   * @return <code>true</code> caso o valor seja menor que o informado e <code>false</code> caso contrário.
+   * @return <code>true</code> caso o valor seja menor que o informado e <code>false</code> caso
+   *         contrário.
    */
   public boolean isMenorQue(Money other) {
     return compareTo(other) < 0;
@@ -219,7 +222,7 @@ public final class Money implements Comparable<Money>, Serializable {
    */
   public Money[] distribute(int factor) {
     org.apache.commons.lang3.Validate.isTrue(factor > 0,
-      "Fator de distribuição deve ser maior do que zero");
+        "Fator de distribuição deve ser maior do que zero");
     BigInteger bigValue = BigInteger.valueOf(amount);
     BigInteger[] result = bigValue.divideAndRemainder(BigInteger.valueOf(factor));
     Money[] distribution = new Money[factor];
@@ -306,8 +309,8 @@ public final class Money implements Comparable<Money>, Serializable {
   }
 
   public Money getPorcentage(Ratio value) {
-    final Ratio divisor = value.divide(Ratio.valueOf(100));
-    final BigDecimal multiply = getAmount().multiply(divisor.asNumber(), MathContext.DECIMAL32);
+    Ratio divisor = value.divide(Ratio.valueOf(100));
+    BigDecimal multiply = getAmount().multiply(divisor.asNumber(), MathContext.DECIMAL32);
     return new Money(multiply, currency, arredondamento);
   }
 
@@ -316,8 +319,9 @@ public final class Money implements Comparable<Money>, Serializable {
   }
 
   public Ratio porcentageRelative(double value) {
-    return Ratio.valueOf(BigDecimal.valueOf(value).multiply(BigDecimal.valueOf(100)).divide(
-      getAmount(), 10, getArredondamento()));
+    BigDecimal cem = BigDecimal.valueOf(100);
+    return Ratio.valueOf(BigDecimal.valueOf(value).multiply(cem)
+        .divide(getAmount(), 10, getArredondamento()));
   }
 
   private static long toLongRepresentation(BigDecimal value, Currency currency) {
@@ -400,8 +404,7 @@ public final class Money implements Comparable<Money>, Serializable {
    */
   @Override
   public String toString() {
-    return currency.getSymbol().concat(" ")
-      .concat(DECIMAL_FORMAT.format(getAmount().doubleValue()));
+    return String.format("%s %s", currency.getSymbol(), getAmount().doubleValue());
   }
 
   /**
@@ -415,8 +418,8 @@ public final class Money implements Comparable<Money>, Serializable {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = (prime * result) + (int) (amount ^ (amount >>> 32));
-    result = (prime * result) + ((currency == null) ? 0 : currency.hashCode());
+    result = prime * result + (int) (amount ^ amount >>> 32);
+    result = prime * result + (currency == null ? 0 : currency.hashCode());
     return result;
   }
 
@@ -425,12 +428,12 @@ public final class Money implements Comparable<Money>, Serializable {
     if (this == obj) {
       return true;
     }
-    if ((obj == null) || (getClass() != obj.getClass())) {
+    if (obj == null || getClass() != obj.getClass()) {
       return false;
     }
     Money other = (Money) obj;
-    return new EqualsBuilder().append(amount, other.amount).append(currency, other.currency)
-      .isEquals();
+    return new EqualsBuilder().append(amount, other.amount)
+        .append(currency, other.currency).isEquals();
   }
 
   public Money copy() {
