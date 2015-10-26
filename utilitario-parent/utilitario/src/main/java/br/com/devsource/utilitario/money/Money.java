@@ -404,7 +404,7 @@ public final class Money implements Comparable<Money>, Serializable {
    */
   @Override
   public String toString() {
-    return String.format("%s %s", currency.getSymbol(), getAmount().doubleValue());
+    return String.format("%s %s", currency.getSymbol(), toFormat());
   }
 
   /**

@@ -17,6 +17,8 @@ import br.com.devsource.utilitario.ratio.Ratio;
 public class RatioUserType extends AbstractUserType implements UserType {
   private static final long serialVersionUID = 1L;
 
+  public static final RatioUserType INSTANCE = new RatioUserType();
+
   private static final int[] SQL_TYPES = { Types.NUMERIC };
 
   @Override
@@ -33,13 +35,12 @@ public class RatioUserType extends AbstractUserType implements UserType {
   public Object nullSafeGet(ResultSet rs, String[] names, SessionImplementor session, Object owner)
       throws SQLException {
     BigDecimal numerador = rs.getBigDecimal(names[0]);
-    return (numerador == null) ? null : Ratio.valueOf(numerador);
+    return numerador == null ? null : Ratio.valueOf(numerador);
   }
 
   @Override
-  public void
-      nullSafeSet(PreparedStatement st, Object value, int index, SessionImplementor session)
-          throws SQLException {
+  public void nullSafeSet(PreparedStatement st, Object value, int index, SessionImplementor session)
+      throws SQLException {
     if (value == null) {
       st.setNull(index, Types.DECIMAL);
     } else {
