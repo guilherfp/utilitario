@@ -8,23 +8,23 @@ import java.util.Collection;
  * @author Guilherme Freitas
  */
 public enum Comprimento implements Unidade {
-  /** yoctômetro (µm): 10^-24 metros. */
+  /** yoctômetro (ym): 10^-24 metros. */
   YOCTOMETRO("yoctômetro", "ym", -24),
-  /** zeptômetro (µm): 10^-21 metros. */
+  /** zeptômetro (zm): 10^-21 metros. */
   ZEPTOMETRO("zepômetro", "zm", -21),
-  /** attômetro (µm): 10^-18 metros. */
+  /** attômetro (am): 10^-18 metros. */
   ATTOMETRO("attômetro", "am", -18),
-  /** fentômetro (µm): 10^-15 metros. */
+  /** fentômetro (fm): 10^-15 metros. */
   FENTOMETRO("fentômetro", "fm", -15),
-  /** picômetro (µm): 10^-12 metros. */
+  /** picômetro (pm): 10^-12 metros. */
   PICOMETRO("picômetro", "pm", -12),
-  /** nanômetro (µm): 10^-9 metros. */
+  /** nanômetro (nm): 10^-9 metros. */
   NANOMETRO("nanômetro", "nm", -9),
   /** micrômetro (µm): 10^-6 metros. */
   MICOMETRO("micrometro", "µm", -6),
   /** milímetro (dm): 10^-3 metros. */
   MILIMETRO("milímetro", "mm", -3),
-  /** centímetro (dm): 10^-2 metros. */
+  /** centímetro (cm): 10^-2 metros. */
   CENTIMETRO("centímetro", "cm", -2),
   /** decímetro (dm): 10^-1 metros. */
   DECIMETRO("decímetro", "dm", -1),
@@ -67,7 +67,7 @@ public enum Comprimento implements Unidade {
   }
 
   @Override
-  public Comprimento getDefaultSI() {
+  public Comprimento getDefaultSi() {
     return METRO;
   }
 }

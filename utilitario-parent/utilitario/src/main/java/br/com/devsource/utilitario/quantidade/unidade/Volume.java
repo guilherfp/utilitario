@@ -67,7 +67,7 @@ public enum Volume implements Unidade {
   }
 
   @Override
-  public Volume getDefaultSI() {
+  public Volume getDefaultSi() {
     return METRO_CUBICO;
   }
 }

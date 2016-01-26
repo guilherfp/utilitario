@@ -40,7 +40,12 @@ public enum Massa implements Unidade {
   }
 
   @Override
-  public Massa getDefaultSI() {
+  public Massa getDefaultSi() {
     return GRAMA;
+  }
+
+  @Override
+  public String toString() {
+    return "Quilograma";
   }
 }

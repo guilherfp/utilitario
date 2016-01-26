@@ -12,10 +12,10 @@ public class UnidadeValue implements Serializable {
   private final String simbolo;
   private final double multiplo;
 
-  UnidadeValue(String nome, String simbolo, double multiplo) {
-    this.nome = nome;
-    this.simbolo = simbolo;
+  public UnidadeValue(String nome, String simbolo, double multiplo) {
     this.multiplo = multiplo;
+    this.simbolo = simbolo;
+    this.nome = nome;
   }
 
   public String getNome() {

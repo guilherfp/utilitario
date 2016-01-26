@@ -90,7 +90,7 @@ implements Comparable<Quantidade<U>>, Serializable {
 
   @SuppressWarnings("unchecked")
   public Quantidade<U> toPadrao() {
-    return to((U) unidade.getDefaultSI());
+    return to((U) unidade.getDefaultSi());
   }
 
   @Override
