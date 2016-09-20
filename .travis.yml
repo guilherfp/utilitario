@@ -1,0 +1,3 @@
+language: java
+efore_script: cd utilitario-parent
+script: mvn test
