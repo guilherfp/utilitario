@@ -28,4 +28,5 @@ public class ExpressoesRegulares {
   public static boolean isValido(String string, String expressao) {
     return Pattern.compile(expressao).matcher(string).matches();
   }
+
 }

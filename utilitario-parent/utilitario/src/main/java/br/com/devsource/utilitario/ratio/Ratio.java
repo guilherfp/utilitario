@@ -182,4 +182,5 @@ public final class Ratio extends Number implements Comparable<Ratio>, Serializab
   public double doubleValue() {
     return asNumber().doubleValue();
   }
+
 }

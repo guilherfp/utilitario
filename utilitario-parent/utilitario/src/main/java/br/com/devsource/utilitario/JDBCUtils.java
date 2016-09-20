@@ -95,7 +95,8 @@ public final class JDBCUtils {
    */
   public static boolean isSchemaExist(String jndiResource, String schema) throws ConexaoException {
     boolean result = false;
-    String format = "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '%s'";
+    String format = "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA "
+        + "sWHERE SCHEMA_NAME = '%s'";
     String sql = String.format(format, schema);
     PreparedStatement pstmt;
     try {
@@ -132,7 +133,6 @@ public final class JDBCUtils {
   /**
    * Executa um comando SQL.
    * @param jndiResource Nome do Recurso JNDI utilizado para obter a conexão.
-   * @@param jndiResource Recurso JNDI a ser utilizado.
    * @param sql SQL a ser executada.
    * @throws ConexaoException Caso tenha erro de SQL.
    * @throws ConexaoException Caso não possa obter um JNDI.
@@ -144,4 +144,5 @@ public final class JDBCUtils {
       throw new ConexaoException(ex);
     }
   }
+
 }

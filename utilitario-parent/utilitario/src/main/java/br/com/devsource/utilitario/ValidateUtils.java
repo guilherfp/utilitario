@@ -34,7 +34,7 @@ public class ValidateUtils {
   }
 
   /**
-   * Valida de o valor monetário é maior que um centávo.
+   * Valida de o valor monetário é maior que um centavo.
    * @param excepted Valor a ser validado.
    * @throws IllegalArgumentException Se a expressão for falsa.
    * @author Guilherme Freitas em 28/05/2014.

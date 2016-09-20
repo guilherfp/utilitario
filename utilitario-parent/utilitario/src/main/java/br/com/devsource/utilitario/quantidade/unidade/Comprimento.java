@@ -8,6 +8,7 @@ import java.util.Collection;
  * @author Guilherme Freitas
  */
 public enum Comprimento implements Unidade {
+
   /** yoctômetro (ym): 10^-24 metros. */
   YOCTOMETRO("yoctômetro", "ym", -24),
   /** zeptômetro (zm): 10^-21 metros. */
@@ -70,4 +71,5 @@ public enum Comprimento implements Unidade {
   public Comprimento getDefaultSi() {
     return METRO;
   }
+
 }

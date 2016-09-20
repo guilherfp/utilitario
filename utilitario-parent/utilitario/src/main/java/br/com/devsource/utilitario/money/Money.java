@@ -190,9 +190,9 @@ public final class Money implements Comparable<Money>, Serializable {
   }
 
   /**
-   * Múltiplica moeda atual por um número.
-   * @param factor Fator de múltiplicação.
-   * @return Resultado da múltiplicação da moeda por factor.
+   * Multiplica moeda atual por um número.
+   * @param factor Fator de multiplicação.
+   * @return Resultado da multiplicação da moeda por factor.
    */
   public Money multiply(Number factor) {
     BigDecimal bigFactor;
@@ -206,9 +206,9 @@ public final class Money implements Comparable<Money>, Serializable {
   }
 
   /**
-   * Múltiplica moeda atual por um número.
-   * @param factor Fator de múltiplicação.
-   * @return Resultado da múltiplicação da moeda por factor.
+   * Multiplica moeda atual por um número.
+   * @param factor Fator de multiplicação.
+   * @return Resultado da multiplicação da moeda por factor.
    */
   public Money multiply(double factor) {
     return multiply(BigDecimal.valueOf(factor));
@@ -216,7 +216,7 @@ public final class Money implements Comparable<Money>, Serializable {
 
   /**
    * Realiza a distribuição monetária da moeda.
-   * @param factor Fator de distruição (Porções que será distribuída).
+   * @param factor Fator de distribuição (Porções que será distribuída).
    * @return Array de money com a quantidade informada pelo factor.
    * @throws IllegalArgumentException Caso factor não seja maior do que zero.
    */
@@ -260,7 +260,7 @@ public final class Money implements Comparable<Money>, Serializable {
   }
 
   /**
-   * Realiza um incrmento (Acréscimo) sobre o valor.<br>
+   * Realiza um incremento (Acréscimo) sobre o valor.<br>
    * <b>Obs.:</b> Não é necessário realizar a divisão por 100, ele recebe o valor já em porcentagem.
    * <p/>
    * Ex.: Valor = 100,00<br>
@@ -274,7 +274,7 @@ public final class Money implements Comparable<Money>, Serializable {
   }
 
   /**
-   * Realiza um incrmento (Acréscimo) sobre o valor.<br>
+   * Realiza um incremento (Acréscimo) sobre o valor.<br>
    * <b>Obs.:</b> Não é necessário realizar a divisão por 100, ele recebe o valor já em porcentagem.
    * <p>
    * Ex.: Valor = 100,00<br>
@@ -443,4 +443,5 @@ public final class Money implements Comparable<Money>, Serializable {
   public boolean isMultiple(Money other) {
     return getAmount().remainder(other.getAmount()).compareTo(BigDecimal.ZERO) == 0;
   }
+
 }

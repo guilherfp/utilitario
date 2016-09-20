@@ -8,11 +8,13 @@ import br.com.devsource.utilitario.quantidade.unidade.Unidade;
 import br.com.devsource.utilitario.ratio.Ratio;
 
 /**
- * Patern quantity.
+ * Pattern quantity.
  * @author Guilherme Freitas
  */
 public final class Quantidade<U extends Unidade>
-implements Comparable<Quantidade<U>>, Serializable {
+    implements
+      Comparable<Quantidade<U>>,
+      Serializable {
   private static final long serialVersionUID = 1L;
 
   private Ratio quantia;
@@ -126,4 +128,5 @@ implements Comparable<Quantidade<U>>, Serializable {
     String simbolo = unidade.getValue().getSimbolo();
     return String.format("%s %s", quantia.asNumber(), simbolo).replace(".", ",");
   }
+
 }

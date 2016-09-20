@@ -22,7 +22,7 @@ public final class TextoUtils {
   private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#,##0");
 
   static {
-    PREPOSICOES = Arrays.asList(new String[] {"de", "da", "do", "e"});
+    PREPOSICOES = Arrays.asList(new String[] { "de", "da", "do", "e", "dos" });
   }
 
   private TextoUtils() {

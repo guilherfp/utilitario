@@ -7,6 +7,7 @@ import java.util.Collection;
  * @author Guilherme Pacheco
  */
 public enum Massa implements Unidade {
+
   /** miligrama: 10^-3 gramas. */
   MILIGRAMA("miligrama", "mg", -3),
   /** centrigrama: 10^-2 gramas. */
@@ -48,4 +49,5 @@ public enum Massa implements Unidade {
   public String toString() {
     return "Quilograma";
   }
+
 }
