@@ -6,7 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
-import org.hibernate.engine.spi.SessionImplementor;
+import org.hibernate.HibernateException;
+import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.usertype.UserType;
 
 import br.com.devsource.utilitario.ratio.Ratio;
@@ -32,15 +33,15 @@ public class RatioUserType extends AbstractUserType implements UserType {
   }
 
   @Override
-  public Object nullSafeGet(ResultSet rs, String[] names, SessionImplementor session, Object owner)
-      throws SQLException {
+  public Object nullSafeGet(ResultSet rs, String[] names, SharedSessionContractImplementor session,
+      Object owner) throws HibernateException, SQLException {
     BigDecimal numerador = rs.getBigDecimal(names[0]);
     return numerador == null ? null : Ratio.valueOf(numerador);
   }
 
   @Override
-  public void nullSafeSet(PreparedStatement st, Object value, int index, SessionImplementor session)
-      throws SQLException {
+  public void nullSafeSet(PreparedStatement st, Object value, int index,
+      SharedSessionContractImplementor session) throws HibernateException, SQLException {
     if (value == null) {
       st.setNull(index, Types.DECIMAL);
     } else {

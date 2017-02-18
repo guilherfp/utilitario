@@ -14,7 +14,7 @@
 
   <properties>
     <java.version>1.8</java.version>
-    <hibernate.version>4.2.6.Final</hibernate.version>
+    <hibernate.version>5.2.6.Final</hibernate.version>
     <hibernate.validator.version>5.0.1.Final</hibernate.validator.version>
     <stela.user.types.version>2.0</stela.user.types.version>
     <jadira.usertye.version>3.0.0.CR1</jadira.usertye.version>
@@ -44,17 +44,6 @@
       <groupId>br.com.caelum.stella</groupId>
       <artifactId>caelum-stella-hibernate-user-types</artifactId>
       <version>${stela.user.types.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.jadira.usertype</groupId>
-      <artifactId>usertype.core</artifactId>
-      <version>${jadira.usertye.version}</version>
-      <exclusions>
-        <exclusion>
-          <artifactId>joda-money</artifactId>
-          <groupId>org.joda</groupId>
-        </exclusion>
-      </exclusions>
     </dependency>
   </dependencies>
 
